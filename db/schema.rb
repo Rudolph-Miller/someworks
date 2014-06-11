@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140611233105) do
+ActiveRecord::Schema.define(version: 20140611235509) do
+
+  create_table "assigned_tasks", force: true do |t|
+    t.integer  "tasks_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "assigned_tasks", ["tasks_id"], name: "index_assigned_tasks_on_tasks_id", using: :btree
 
   create_table "pictures", force: true do |t|
     t.datetime "created_at"
