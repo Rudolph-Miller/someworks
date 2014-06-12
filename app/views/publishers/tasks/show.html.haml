@@ -1,1 +1,8 @@
-
+%h1= @task[:title]
+%table
+  %body
+    - @task.attribute_names.each do |key|
+      %tr
+        %td= key
+        %td= @task[key]
+= link_to 'back', '/publishers/tasks'

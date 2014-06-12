@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   post 'tasks/create', to: 'tasks#create'
   get 'tasks/new'
   get 'tasks/delete'
+	get 'tasks/show', to: 'tasks#show'
 
   get 'websites', to: 'websites#index'
   end

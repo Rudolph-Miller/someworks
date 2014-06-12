@@ -20,4 +20,5 @@
           %td= task[:number]
           %td= task[:reward]
           %td= task[:status]
+          %td= link_to 'show', :controller => 'tasks', :action => 'show', :id => task[:id]
   = link_to "create new task", publishers_tasks_new_path

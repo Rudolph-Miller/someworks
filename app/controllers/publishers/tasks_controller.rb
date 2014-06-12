@@ -18,6 +18,7 @@ class Publishers::TasksController < ApplicationController
 	end
 
 	def show
+		@task = Task.where(:id => params[:id]).first
 	end
 
 	def new
