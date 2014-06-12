@@ -1,2 +1,21 @@
-%h1 Publishers::Tasks#index
-%p Find me in app/views/publishers/tasks/index.html.erb
+%h1 Tasks
+%div.content
+  %table
+    %tr
+      %th id
+      %th title
+      %th description
+      %th start
+      %th end
+      %th number
+      %th reward
+- @tasks.each do |task|
+  %tr
+    %td id: #{task[:id]}
+    %td title is #{task[:title]}
+    %td descripton is #{task[:description]}
+    %td start: #{task[:start_date]}
+    %td end: #{task[:end_date]}
+    %td number: #{task[:number]}
+    %td reward: #{task[:reward]}
+
