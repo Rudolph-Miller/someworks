@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140612000410) do
+ActiveRecord::Schema.define(version: 20140612000740) do
 
   create_table "assigned_tasks", force: true do |t|
     t.integer  "tasks_id"
@@ -40,5 +40,11 @@ ActiveRecord::Schema.define(version: 20140612000410) do
   end
 
   add_index "tasks", ["websites_id"], name: "index_tasks_on_websites_id", using: :btree
+
+  create_table "writers", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
