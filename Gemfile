@@ -46,3 +46,5 @@ end
 
 gem 'paperclip'
 gem 'bootstrap-sass'
+gem 'haml-rails'
+gem 'erb2haml'
