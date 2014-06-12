@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  namespace :publishers do
+  get 'websites', to: 'websites#index'
+  end
+
+  namespace :editors do
+  get 'tasks', to: 'tasks#index'
+  end
+
+  namespace :editors do
+  get 'assigned_tasks', to: 'assigned_tasks#index'
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

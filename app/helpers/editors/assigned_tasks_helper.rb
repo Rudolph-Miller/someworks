@@ -1,0 +1,2 @@
+module Editors::AssignedTasksHelper
+end

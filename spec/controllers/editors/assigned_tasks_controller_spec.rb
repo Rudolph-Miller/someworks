@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Editors::TasksController do
+describe Editors::AssignedTasksController do
 
   describe "GET 'index'" do
     it "returns http success" do

@@ -1,0 +1,2 @@
+module Publishers::WebsitesHelper
+end
