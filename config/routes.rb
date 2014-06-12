@@ -1,18 +1,24 @@
 Rails.application.routes.draw do
-  namespace :writers do
-  get 'articles', to: 'articles#index'
-  get 'articles/new'
-  get 'articles/create'
-  get 'articles/delete'
-
-  get 'assigned_tasks', to: 'assigned_tasks#index'
-  end
-
-
   namespace :publishers do
+  get 'tasks', to: 'tasks#index'
+  get 'tasks/create'
+  get 'tasks/new'
+  get 'tasks/delete'
+
   get 'websites', to: 'websites#index'
   end
 
+  namespace :writers do
+  get 'articles', to: 'articles#index'
+  get 'articles/new'
+  post 'articles/create'
+  get 'articles/delete'
+	get 'articles/edit'
+	get 'articles/edit'
+	post 'articles/update'
+
+  get 'assigned_tasks', to: 'assigned_tasks#index'
+  end
 
   namespace :editors do
   get 'assigned_tasks', to: 'assigned_tasks#index'
