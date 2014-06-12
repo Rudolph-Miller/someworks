@@ -1,23 +1,23 @@
-%h1 Tasks
 %div.content
   %table
-    %tr
-      %th id
-      %th title
-      %th description
-      %th start
-      %th end
-      %th number
-      %th reward
-- @tasks.each do |task|
-  %div= link_to "", publishers_tasks_show_path(:id => task[:id], :identifier => task[:identifier])
-  %tr
-    %td id: #{task[:id]}
-    %td title is #{task[:title]}
-    %td descripton is #{task[:description]}
-    %td start: #{task[:start_date]}
-    %td end: #{task[:end_date]}
-    %td number: #{task[:number]}
-    %td reward: #{task[:reward]}
-
-= link_to "new task", publishers_tasks_new_path
+    %thead
+      %tr
+        %th id
+        %th title
+        %th description
+        %th start
+        %th end
+        %th number
+        %th reward
+    %tbody
+      -@tasks.each do |task|
+        %tr
+          %td= task[:id]
+          %td= task[:title]
+          %td= task[:description]
+          %td= task[:start_date]
+          %td= task[:end_date]
+          %td= task[:number]
+          %td= task[:reward]
+          %td= task[:status]
+  = link_to "create new task", publishers_tasks_new_path

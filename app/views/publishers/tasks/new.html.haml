@@ -1,2 +1,37 @@
-%h1 Publishers::Tasks#new
-%p Find me in app/views/publishers/tasks/new.html.erb
+%div
+  #field
+    = form_for @task, :url=>{:action => 'create', :controller => 'tasks'}  do |t|
+      %tr
+        %td Title
+        %td= t.text_field:title
+        %br
+
+      %tr
+        %td Description
+        %td= t.text_area:description
+        %br
+
+      %tr
+        %td StartDate
+        %td= t.date_select:start_date
+        %br
+
+      %tr
+        %td EndDate
+        %td= t.date_select:end_date
+        %br
+
+      %tr
+        %td Reward
+        %td= t.number_field:reward
+        %br
+
+      %tr
+        %td Number
+        %td= t.number_field:number
+        %br
+
+      = t.submit 'create'
+      = link_to 'cancel', '/publishers/tasks'
+
+

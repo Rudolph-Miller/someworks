@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :publishers do
   get 'tasks', to: 'tasks#index'
-  get 'tasks/create'
+  post 'tasks/create', to: 'tasks#create'
   get 'tasks/new'
   get 'tasks/delete'
 
@@ -24,6 +24,9 @@ Rails.application.routes.draw do
   get 'assigned_tasks', to: 'assigned_tasks#index'
   get 'tasks', to: 'tasks#index'
   end
+
+	resources :tasks
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
