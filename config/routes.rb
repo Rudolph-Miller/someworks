@@ -1,14 +1,22 @@
 Rails.application.routes.draw do
+  namespace :writers do
+  get 'articles', to: 'articles#index'
+  get 'articles/new'
+  get 'articles/create'
+  get 'articles/delete'
+
+  get 'assigned_tasks', to: 'assigned_tasks#index'
+  end
+
+
   namespace :publishers do
   get 'websites', to: 'websites#index'
   end
 
-  namespace :editors do
-  get 'tasks', to: 'tasks#index'
-  end
 
   namespace :editors do
   get 'assigned_tasks', to: 'assigned_tasks#index'
+  get 'tasks', to: 'tasks#index'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
