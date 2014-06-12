@@ -10,6 +10,7 @@
       %th number
       %th reward
 - @tasks.each do |task|
+  %div= link_to "", publishers_tasks_show_path(:id => task[:id], :identifier => task[:identifier])
   %tr
     %td id: #{task[:id]}
     %td title is #{task[:title]}
@@ -19,3 +20,4 @@
     %td number: #{task[:number]}
     %td reward: #{task[:reward]}
 
+= link_to "new task", publishers_tasks_new_path
