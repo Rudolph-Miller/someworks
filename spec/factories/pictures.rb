@@ -2,5 +2,6 @@
 
 FactoryGirl.define do
   factory :picture do
+		image File.open('spec/resources/sample.png')
   end
 end
