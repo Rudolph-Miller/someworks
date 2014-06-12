@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'tasks/new'
   get 'tasks/delete'
 	get 'tasks/show', to: 'tasks#show'
+	patch 'tasks/update', to: 'tasks#update'
+	get 'tasks/edit', :controller => 'tasks', :action => 'edit'
 
   get 'websites', to: 'websites#index'
   end

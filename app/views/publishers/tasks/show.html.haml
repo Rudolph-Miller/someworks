@@ -6,3 +6,4 @@
         %td= key
         %td= @task[key]
 = link_to 'back', '/publishers/tasks'
+= link_to 'edit', :controller => 'tasks', :action => 'edit', :id => @task[:id]
