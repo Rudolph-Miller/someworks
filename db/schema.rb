@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140612001000) do
+ActiveRecord::Schema.define(version: 20140612002253) do
 
   create_table "assigned_tasks", force: true do |t|
     t.integer  "tasks_id"
@@ -32,11 +32,16 @@ ActiveRecord::Schema.define(version: 20140612001000) do
     t.datetime "updated_at"
   end
 
+  create_table "publishers", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "tasks", force: true do |t|
     t.string   "title"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.integer  "websites_id"
     t.integer  "number"
     t.integer  "reward"
     t.string   "description"
@@ -45,7 +50,13 @@ ActiveRecord::Schema.define(version: 20140612001000) do
     t.datetime "updated_at"
   end
 
-  add_index "tasks", ["websites_id"], name: "index_tasks_on_websites_id", using: :btree
+  create_table "websites", force: true do |t|
+    t.string   "site_type"
+    t.string   "url"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "writers", force: true do |t|
     t.string   "name"

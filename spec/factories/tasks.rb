@@ -5,7 +5,6 @@ FactoryGirl.define do
     title "MyString"
     start_date "2014-06-12 09:04:10"
     end_date "2014-06-12 09:04:10"
-    websites nil
     number 1
     reward 1
     description "MyString"

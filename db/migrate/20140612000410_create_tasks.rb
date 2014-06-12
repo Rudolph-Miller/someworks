@@ -4,7 +4,6 @@ class CreateTasks < ActiveRecord::Migration
       t.string :title
       t.datetime :start_date
       t.datetime :end_date
-      t.references :websites, index: true
       t.integer :number
       t.integer :reward
       t.string :description
