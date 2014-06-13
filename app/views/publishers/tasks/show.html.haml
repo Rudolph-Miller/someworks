@@ -4,6 +4,9 @@
     - @task.attribute_names.each do |key|
       %tr
         %td= key
-        %td= @task[key]
+        - if key != "status"
+          %td= @task[key] 
+        - else 
+          %td= @task.status
 = link_to 'back', '/publishers/tasks'
 = link_to 'edit', :controller => 'tasks', :action => 'edit', :id => @task[:id]

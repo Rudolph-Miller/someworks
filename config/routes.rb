@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 	get 'tasks/show', to: 'tasks#show'
 	patch 'tasks/update', to: 'tasks#update'
 	get 'tasks/edit', :controller => 'tasks', :action => 'edit'
+	delete 'tasks/delete', :controller => 'tasks', :action => 'delete'
 
   get 'websites', to: 'websites#index'
   end
@@ -30,6 +31,7 @@ Rails.application.routes.draw do
 	get 'tasks/assign', to: 'tasks#assign'
 	get 'new', to: 'tasks#new'
 	post 'create', to: 'tasks#create'
+	get 'tasks/delete', :controller => 'tasks', :action => 'delete'
   end
 
 	resources :tasks

@@ -1,4 +1,8 @@
 class Task < ActiveRecord::Base
+	extend Enumerize
+
+	enum status: {unpublished:0, published:1, closed:2}
+
 	belongs_to :publisher
 	belongs_to :editor
 	belongs_to :category
@@ -10,6 +14,8 @@ class Task < ActiveRecord::Base
 	validates :reward, presence: true
 	validates :reward, numericality: :only_integer
 	validates :status, presence: true
-	validates :status, numericality: :onlu_integer
 
+	def unpublished? (task)
+		not task.published?
+	end
 end

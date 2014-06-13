@@ -6,8 +6,8 @@ class Publishers::TasksController < ApplicationController
 
 	def create
 		@task = Task.new(task_params)
-		@task[:status]=1
-		if @task.save
+		@task.status = :unpublished
+		if @task.save!
 			redirect_to '/publishers/tasks'
 		else
 			redirect_to '/publishers/tasks/new'

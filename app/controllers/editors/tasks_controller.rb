@@ -29,4 +29,6 @@ class Editors::TasksController < ApplicationController
 		@task = Task.new
 	end
 
+	def delete
+	end
 end
