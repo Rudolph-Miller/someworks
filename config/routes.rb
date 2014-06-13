@@ -26,6 +26,10 @@ Rails.application.routes.draw do
   namespace :editors do
   get 'assigned_tasks', to: 'assigned_tasks#index'
   get 'tasks', to: 'tasks#index'
+	get 'tasks/show', to: 'tasks#show'
+	get 'tasks/assign', to: 'tasks#assign'
+	get 'new', to: 'tasks#new'
+	post 'create', to: 'tasks#create'
   end
 
 	resources :tasks

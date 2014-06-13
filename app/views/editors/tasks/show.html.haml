@@ -1,0 +1,9 @@
+%h1= @task[:title]
+%table
+  %body
+    - @task.attribute_names.each do |key|
+      %tr
+        %td= key
+        %td= @task[key]
+= link_to 'back', '/editors/tasks'
+= link_to 'assign', :controller => 'tasks', :action => 'assign', :id => @task[:id]

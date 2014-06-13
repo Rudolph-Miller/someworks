@@ -1,14 +1,11 @@
 class Publishers::TasksController < ApplicationController
+
 	def index
 		@tasks=Task.all
 	end
 
 	def create
-		@task = Task.new
-		task=params[:task]
-		@task.attribute_names.each do |key|
-			@task[key]=task[key]
-		end
+		@task = Task.new(task_params)
 		@task[:status]=1
 		if @task.save
 			redirect_to '/publishers/tasks'
@@ -27,9 +24,7 @@ class Publishers::TasksController < ApplicationController
 
 	def update
 		@task = Task.where(:id => params[:id]).first
-		["title", "description", "reward", "start_date", "end_date"].each do |key|
-			@task.update_attributes(:id=>params[:id], key => params[:task][key])
-		end
+		@task.update_attributes(task_params)
 		if @task.save
 			redirect_to :controller => 'tasks', :action => 'show', :id => params[:id]
 		else
@@ -43,4 +38,11 @@ class Publishers::TasksController < ApplicationController
 
 	def delete
 	end
+
+	private
+
+	def task_params
+		params.require(:task).permit(:title, :description, :start_date, :end_date, :reward, :number, :agreement)
+	end
+
 end

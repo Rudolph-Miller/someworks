@@ -1,6 +1,8 @@
 class Editor < ActiveRecord::Base
-	has_many :assigned_task
-	has_many :task
+	include TaskCreatable
+
+	has_many :assigned_tasks
+	has_many :tasks
 
 	validates :name, presence: true
 end

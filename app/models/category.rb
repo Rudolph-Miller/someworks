@@ -1,5 +1,5 @@
 class Category < ActiveRecord::Base
-	has_many :website
-	has_many :task
+	has_many :websites
+	has_many :tasks
 	validates :name, presence: true
 end

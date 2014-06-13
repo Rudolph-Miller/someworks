@@ -1,2 +1,49 @@
-%h1 Editors::Tasks#index
-%p Find me in app/views/editors/tasks/index.html.erb
+%h1 EditorTasks
+%div.content
+  %h2 UnassignedTasks 
+  %table
+    %thead
+      %tr
+        %th id
+        %th title
+        %th description
+        %th start
+        %th end
+        %th number
+        %th reward
+    %tbody
+      -@unasssigned_tasks.each do |task|
+        %tr
+          %td= task[:id]
+          %td= task[:title]
+          %td= task[:description]
+          %td= task[:start_date]
+          %td= task[:end_date]
+          %td= task[:number]
+          %td= task[:reward]
+          %td= task[:status]
+          %td= link_to 'show', :controller => 'tasks', :action => 'show', :id => task[:id]
+  %h2  AssignedTasks
+  %table
+    %thead
+      %tr
+        %th id
+        %th title
+        %th description
+        %th start
+        %th end
+        %th number
+        %th reward
+    %tbody
+      -@assigned_tasks.each do |task|
+        %tr
+          %td= task[:id]
+          %td= task[:title]
+          %td= task[:description]
+          %td= task[:start_date]
+          %td= task[:end_date]
+          %td= task[:number]
+          %td= task[:reward]
+          %td= task[:status]
+          %td= link_to 'show', :controller => 'tasks', :action => 'show', :id => task[:id]
+= link_to 'create', :controller => 'tasks', :action => 'new'
