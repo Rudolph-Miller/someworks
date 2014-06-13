@@ -15,7 +15,31 @@ class Task < ActiveRecord::Base
 	validates :reward, numericality: :only_integer
 	validates :status, presence: true
 
-	def unpublished? (task)
-		not task.published?
+	def unpublished? ()
+		not self.published?
+	end
+
+	def publish ()
+		unless self.status == :published
+			self.status = :published
+		end
+	end
+
+	def unpublish ()
+		unless self.status == :unpublished
+			self.status = :unpublished
+		end
+	end
+
+	def close ()
+		unless self.status == :closed
+			self.status = :closed
+		end
+	end
+
+	def unclose ()
+		if self.status == :closed
+			self.status = :unpublished
+		end
 	end
 end
