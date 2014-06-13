@@ -4,6 +4,15 @@
     - @task.attribute_names.each do |key|
       %tr
         %td= key
-        %td= @task[key]
+        - if key != "status"
+          %td= @task[key] 
+        - else 
+          %td= @task.status
+    %td Assinged?
+    - if @task.assigned?
+      %td Assigned!
+    - else
+      %td Unassinged!
 = link_to 'back', '/editors/tasks'
-= link_to 'assign', :controller => 'tasks', :action => 'assign', :id => @task[:id]
+-unless @task.assigned?
+  = link_to 'assign', :controller => 'tasks', :action => 'assign', :id => @task[:id]

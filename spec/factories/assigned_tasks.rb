@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :assigned_task do
-    tasks nil
+    task_id 1
   end
 end

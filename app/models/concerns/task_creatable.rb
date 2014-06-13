@@ -4,7 +4,7 @@ module TaskCreatable
 	def create_task (params)
 		@params=params
 		task=Task.new(task_params)
-		task.status=1
+		task.status = :unpublished
 		task.save
 	end
 

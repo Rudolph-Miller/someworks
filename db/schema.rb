@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140612033008) do
+ActiveRecord::Schema.define(version: 20140613103903) do
 
   create_table "articles", force: true do |t|
     t.string   "content"
@@ -21,12 +21,10 @@ ActiveRecord::Schema.define(version: 20140612033008) do
   end
 
   create_table "assigned_tasks", force: true do |t|
-    t.integer  "tasks_id"
+    t.integer  "task_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "assigned_tasks", ["tasks_id"], name: "index_assigned_tasks_on_tasks_id", using: :btree
 
   create_table "categories", force: true do |t|
     t.string   "name"

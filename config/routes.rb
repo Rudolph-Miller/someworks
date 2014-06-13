@@ -31,7 +31,7 @@ Rails.application.routes.draw do
 	get 'tasks/assign', to: 'tasks#assign'
 	get 'new', to: 'tasks#new'
 	post 'create', to: 'tasks#create'
-	get 'tasks/delete', :controller => 'tasks', :action => 'delete'
+	post 'tasks/delete', :controller => 'tasks', :action => 'delete'
   end
 
 	resources :tasks

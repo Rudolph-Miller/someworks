@@ -42,4 +42,16 @@ class Task < ActiveRecord::Base
 			self.status = :unpublished
 		end
 	end
+
+	def assign ()
+		unless Task.where(:id => self.id).first.assigned?
+			task = AssignedTask.new()
+			task.task_id = self.id
+			task.save
+		end
+	end
+
+	def assigned? ()
+		AssignedTask.where(:task_id => self.id).present?
+	end
 end

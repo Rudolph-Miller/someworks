@@ -1,8 +1,14 @@
 class Editors::TasksController < ApplicationController
   def index
-		@unasssigned_tasks = Task.where(:status=>1)
-		#@your_assigned_tasks = current_user.AssignedTasks.where
-		@assigned_tasks = Task.where(:status=>2)
+		@assigned_tasks = []
+		@unasssigned_tasks = []
+		Task.all.each do |task|
+			if task.assigned?
+				@assigned_tasks << task
+			else
+				@unasssigned_tasks << task
+			end
+		end
   end
 
 	def show
@@ -10,9 +16,8 @@ class Editors::TasksController < ApplicationController
 	end
 
 	def assign
-		@task = Task.where(:id=>params[:id]).first
-		@task.update_attributes(:id=>params[:id], :status=>2)
-		@task.save
+		task = Task.where(:id=>params[:id]).first
+		task.assign
 		redirect_to '/editors/tasks'
 	end
 
