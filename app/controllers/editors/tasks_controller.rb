@@ -30,10 +30,26 @@ class Editors::TasksController < ApplicationController
 		end
 	end
 
+	def edit
+		@task = Task.where(:id => params[:id]).first
+	end
+
+	def update
+		editor = Editor.new
+		if editor.update_task(params)
+			redirect_to :controller => 'tasks', :action => 'show', :id => params[:id]
+		else
+			redirect_to :controller => 'tasks', :action => 'edit', :id => params[:id]
+		end
+	end
+
 	def new
 		@task = Task.new
 	end
 
 	def delete
+		editor = Editor.new
+		editor.delete_task(params)
+		redirect_to :controller => 'tasks', :action => 'index'
 	end
 end

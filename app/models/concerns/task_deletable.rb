@@ -2,8 +2,10 @@ module TaskDeletable
 	extend ActiveSupport::Concern
 
 	def delete_task (params)
-		@params=params
-		Task.where(:id => params[:id]).first.destroy
+		p params
+		task = Task.where(:id => params[:id]).first
+		task.deleted_at = Time.now
+		task.save
 	end
 
 	def task_params

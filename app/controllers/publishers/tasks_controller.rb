@@ -23,9 +23,8 @@ class Publishers::TasksController < ApplicationController
 	end
 
 	def update
-		@task = Task.where(:id => params[:id]).first
-		@task.update_attributes(task_params)
-		if @task.save
+		publisher = Publisher.new
+		if publisher.update_task(params)
 			redirect_to :controller => 'tasks', :action => 'show', :id => params[:id]
 		else
 			redirect_to :controller => 'tasks', :action => 'edit', :id => params[:id]
@@ -37,6 +36,9 @@ class Publishers::TasksController < ApplicationController
 	end
 
 	def delete
+		publisher = Publisher.new
+		publisher.delete_task(params)
+		redirect_to :controller => 'tasks', :action => 'index'
 	end
 
 	private

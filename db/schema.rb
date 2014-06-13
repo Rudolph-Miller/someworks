@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140613103903) do
+ActiveRecord::Schema.define(version: 20140613120618) do
 
   create_table "articles", force: true do |t|
     t.string   "content"
     t.integer  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   create_table "assigned_tasks", force: true do |t|
@@ -63,6 +64,7 @@ ActiveRecord::Schema.define(version: 20140613103903) do
     t.integer  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   create_table "websites", force: true do |t|

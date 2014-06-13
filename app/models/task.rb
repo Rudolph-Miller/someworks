@@ -1,5 +1,6 @@
 class Task < ActiveRecord::Base
 	extend Enumerize
+	default_scope {where(:deleted_at => nil)}
 
 	enum status: {unpublished:0, published:1, closed:2}
 

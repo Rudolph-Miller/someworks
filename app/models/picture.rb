@@ -1,4 +1,6 @@
 class Picture < ActiveRecord::Base
+	default_scope {where(:deleted_at => nil)}
+
 	belongs_to :article
 
 	has_attached_file :image
