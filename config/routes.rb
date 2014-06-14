@@ -25,15 +25,18 @@ Rails.application.routes.draw do
   end
 
   namespace :editors do
-  get 'assigned_tasks', to: 'assigned_tasks#index'
   get 'tasks', to: 'tasks#index'
 	get 'tasks/show', to: 'tasks#show'
 	get 'tasks/assign', to: 'tasks#assign'
+	post 'tasks/unassign', :controller => 'tasks', :action => 'unassign'
 	get 'new', to: 'tasks#new'
 	post 'create', to: 'tasks#create'
 	post 'tasks/delete', :controller => 'tasks', :action => 'delete'
 	get 'tasks/edit', to: 'tasks#edit'
 	patch 'tasks/update', to: 'tasks#update'
+
+  get 'assigned_tasks', to: 'assigned_tasks#index'
+	post 'assigned_tasks/unassign', :controller => 'assigned_tasks', :action => 'unassign'
   end
 
 end

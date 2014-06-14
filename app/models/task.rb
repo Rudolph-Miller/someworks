@@ -52,6 +52,10 @@ class Task < ActiveRecord::Base
 		end
 	end
 
+	def unassign ()
+		AssignedTask.where(:task_id => self.id).first.destroy
+	end
+			
 	def assigned? ()
 		AssignedTask.where(:task_id => self.id).present?
 	end

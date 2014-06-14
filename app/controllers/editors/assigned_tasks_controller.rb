@@ -7,4 +7,10 @@ class Editors::AssignedTasksController < ApplicationController
 			end
 		end
   end
+
+	def unassign
+		task = Task.where(:id => params[:id]).first
+		task.unassign
+		redirect_to '/editors/assigned_tasks'
+	end
 end

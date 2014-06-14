@@ -21,6 +21,12 @@ class Editors::TasksController < ApplicationController
 		redirect_to '/editors/tasks'
 	end
 
+	def unassign
+		task = Task.where(:id => params[:id]).first
+		task.unassign
+		redirect_to '/editors/tasks'
+	end
+
 	def create 
 		@editor=Editor.new
 		if @editor.create_task(params)
