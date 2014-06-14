@@ -46,6 +46,7 @@
           %td= task[:number]
           %td= task[:reward]
           %td= task[:status]
-          %td= link_to 'show', :controller => 'tasks', :action => 'show', :id => task[:id]
+          %td= link_to 'show', editors_tasks_show_path(:id => task[:id])
           %td= link_to 'unassign', editors_tasks_unassign_path(:id => task[:id]), :method => :post
-= link_to 'create', :controller => 'tasks', :action => 'new'
+= link_to 'create', editors_tasks_new_path
+= link_to 'assigned tasks list', editors_assigned_tasks_path

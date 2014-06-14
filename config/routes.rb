@@ -32,7 +32,7 @@ Rails.application.routes.draw do
 	get 'tasks/show', to: 'tasks#show'
 	get 'tasks/assign', to: 'tasks#assign'
 	post 'tasks/unassign', :controller => 'tasks', :action => 'unassign'
-	get 'new', to: 'tasks#new'
+	get 'tasks/new', to: 'tasks#new'
 	post 'create', to: 'tasks#create'
 	post 'tasks/delete', :controller => 'tasks', :action => 'delete'
 	get 'tasks/edit', to: 'tasks#edit'

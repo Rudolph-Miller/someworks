@@ -20,5 +20,6 @@
           %td= task.end_date
           %td= task.number
           %td= task.reward
-          %td= link_to 'show', :controller => 'tasks', :action => 'show', :id => task[:id]
+          %td= link_to 'show', editors_tasks_show_path(:id => task[:id])
           %td= link_to 'unassign', editors_assigned_tasks_unassign_path(:id => task[:id]), :method => :post
+= link_to 'tasks list', editors_tasks_path

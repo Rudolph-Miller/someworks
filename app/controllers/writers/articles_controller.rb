@@ -14,7 +14,7 @@ class Writers::ArticlesController < ApplicationController
 		if writer.create_article(params)
 			redirect_to writers_articles_path
 		else
-			redirect_to writers_articles_new_path
+			redirect_to (:back)
 		end
   end
 
@@ -30,9 +30,9 @@ class Writers::ArticlesController < ApplicationController
 	def update
 		writer = Writer.new
 		if writer.update_article(params)
-			redirect_to writers_articles_path
+			redirect_to writers_articles_show_path(:id => params[:id])
 		else
-			 redirect_to writers_articles_edit_path
+			 redirect_to (:back)
 		end
 	end
 

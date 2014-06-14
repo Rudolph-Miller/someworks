@@ -24,9 +24,9 @@ class Publishers::TasksController < ApplicationController
 	def update
 		publisher = Publisher.new
 		if publisher.update_task(params)
-			redirect_to :controller => 'tasks', :action => 'show', :id => params[:id]
+			redirect_to publishers_tasks_show_path(:id => params[:id])
 		else
-			redirect_to :controller => 'tasks', :action => 'edit', :id => params[:id]
+			redirect_to (:back)
 		end
 	end
 
@@ -37,20 +37,20 @@ class Publishers::TasksController < ApplicationController
 	def delete
 		publisher = Publisher.new
 		publisher.delete_task(params)
-		redirect_to :controller => 'tasks', :action => 'index'
+		redirect_to publishers_tasks_path
 	end
 
 	def publish
 		task = Task.where(:id => params[:id]).first
 		if task.publish
-			redirect_to publishers_tasks_show_path(:id => params[:id])
+			redirect_to (:back)
 		end
 	end
 
 	def unpublish
 		task = Task.where(:id => params[:id]).first
 		if task.unpublish
-			redirect_to publishers_tasks_show_path(:id => params[:id])
+			redirect_to (:back)
 		end
 	end
 	private

@@ -1,4 +1,5 @@
 class Writers::AssignedTasksController < ApplicationController
+
   def index
 		@tasks = []
 		Task.all.each do |task|
