@@ -7,3 +7,4 @@
         %td= @article[key] 
 = link_to 'back', writers_articles_path
 = link_to 'edit', :controller => 'articles', :action => 'edit', :id => @article[:id]
+= link_to 'delete', writers_articles_delete_path(:id => @article[:id]), :method => :post

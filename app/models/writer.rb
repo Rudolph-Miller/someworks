@@ -19,9 +19,9 @@ class Writer < ActiveRecord::Base
 	end
 
 	def delete_article (params)
-		task = Task.where(:id => params[:id]).first
-		task.deleted_at = Time.now
-		task.save
+		article = Article.where(:id => params[:id]).first
+		article.deleted_at = Time.now
+		article.save
 	end
 
 	private

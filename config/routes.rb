@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 	get 'tasks/show', to: 'tasks#show'
 	patch 'tasks/update', to: 'tasks#update'
 	get 'tasks/edit', :controller => 'tasks', :action => 'edit'
-	delete 'tasks/delete', :controller => 'tasks', :action => 'delete'
+	post 'tasks/delete', :controller => 'tasks', :action => 'delete'
 
   get 'websites', to: 'websites#index'
   end
@@ -15,10 +15,12 @@ Rails.application.routes.draw do
   namespace :writers do
   get 'articles', to: 'articles#index'
   get 'articles/new', to: 'articles#new'
+	post 'articles/create', to: 'articles#create'
 	get 'articles/show', to: 'articles#show'
 	patch 'articles/update', to: 'articles#update'
 	get 'articles/edit'
 	post 'articles/update'
+	post 'articles/delete', :controller => 'articles', :action => 'delete'
 
   get 'assigned_tasks', to: 'assigned_tasks#index'
 	get 'assigned_tasks/show', to: 'assigned_tasks#show'

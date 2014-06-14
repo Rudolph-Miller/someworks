@@ -20,5 +20,5 @@
           %td= task.number
           %td= task.reward
           %td= link_to 'show', :controller => 'tasks', :action => 'show', :id => task[:id]
-          %td= link_to 'delete', :controller => 'tasks', :action => 'delete', :task=>task
+          %td= link_to 'delete', publishers_tasks_delete_path(:id => task[:id]), :method => :post
   = link_to "create new task", publishers_tasks_new_path

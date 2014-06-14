@@ -13,4 +13,5 @@
           %td= article.content
           %td= article.assigned_task
           %td= link_to 'show', :controller => 'articles', :action => 'show', :id => article.id
+          %td= link_to 'delete', writers_articles_delete_path(:id => article[:id]), :method => :post
 = link_to 'create article', writers_articles_new_path

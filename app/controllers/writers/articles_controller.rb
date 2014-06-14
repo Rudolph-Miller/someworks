@@ -36,8 +36,8 @@ class Writers::ArticlesController < ApplicationController
 	end
 
 	def delete
-		article = Article.where(:id => params[:id]).first
-		article.delete
+		writer = Writer.new
+		writer.delete_article(params)
 		redirect_to writers_articles_path
 	end
 end

@@ -12,3 +12,4 @@
   %p= @task.who_assigned
 = link_to 'back', '/publishers/tasks'
 = link_to 'edit', :controller => 'tasks', :action => 'edit', :id => @task[:id]
+= link_to 'delete', publishers_tasks_delete_path(:id => @task[:id]), :method => :post
