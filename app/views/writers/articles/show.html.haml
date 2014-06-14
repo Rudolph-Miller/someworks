@@ -1,0 +1,9 @@
+%h1= @article[:title]
+%table
+  %body
+    - @article.attribute_names.each do |key|
+      %tr
+        %td= key
+        %td= @article[key] 
+= link_to 'back', writers_articles_path
+= link_to 'edit', :controller => 'articles', :action => 'edit', :id => @article[:id]

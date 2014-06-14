@@ -1,4 +1,5 @@
 class Writers::ArticlesController < ApplicationController
+	
   def index
 		@articles = Article.all
   end
@@ -8,29 +9,35 @@ class Writers::ArticlesController < ApplicationController
   end
 
   def create
-		article = Article.new(article_params)
-		article.writer_id = 1
-		if article.save!
+		writer = Writer.new
+		if writer.create_article(params)
 			redirect_to writers_articles_path
 		else
 			redirect_to writers_articles_new_path
 		end
   end
 
-  def delete
-  end
+	def show
+		@article = Article.where(:id => params[:id]).first
+	end
 
 	def edit
+		@article = Article.where(:id => params[:id]).first
 	end
 
-	def show
-	end
 
 	def update
+		writer = Writer.new
+		if writer.update_article(params)
+			redirect_to writers_articles_path
+		else
+			 redirect_to writers_articles_edit_path
+		end
 	end
 
-	private
-	def article_params ()
-		params.require(:article).permit(:id, :content, :created_at, :deleted_at, :updated_at, :assigned_task_id, :writer_id)
+	def delete
+		article = Article.where(:id => params[:id]).first
+		article.delete
+		redirect_to writers_articles_path
 	end
 end

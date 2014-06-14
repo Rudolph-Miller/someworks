@@ -8,5 +8,4 @@ class Article < ActiveRecord::Base
 	def assigned_task_info ()
 		self.assigned_task.task
 	end
-
 end
