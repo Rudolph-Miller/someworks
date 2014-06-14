@@ -11,5 +11,9 @@
 - if @task.assigned?
   %p= @task.who_assigned
 = link_to 'back', '/publishers/tasks'
-= link_to 'edit', :controller => 'tasks', :action => 'edit', :id => @task[:id]
+= link_to 'edit', publishers_tasks_publish_path(:id => @task[:id])
+- if @task.published?
+  = link_to 'unpublish', publishers_tasks_unpublish_path(:id => @task[:id]), :method => :post
+- else
+  = link_to 'publish', publishers_tasks_publish_path(:id => @task[:id]), :method => :post
 = link_to 'delete', publishers_tasks_delete_path(:id => @task[:id]), :method => :post

@@ -3,11 +3,12 @@ Rails.application.routes.draw do
   get 'tasks', to: 'tasks#index'
   post 'tasks/create', to: 'tasks#create'
   get 'tasks/new'
-	post 'tasks/delete', :controller => 'tasks', :action => 'delete'
 	get 'tasks/show', to: 'tasks#show'
 	patch 'tasks/update', to: 'tasks#update'
-	get 'tasks/edit', :controller => 'tasks', :action => 'edit'
-	post 'tasks/delete', :controller => 'tasks', :action => 'delete'
+	get 'tasks/edit', to: 'tasks#edit'
+	post 'tasks/delete', to: 'tasks#delete'
+	post 'tasks/publish', to: 'tasks#publish'
+	post 'tasks/unpublish', to: 'tasks#unpublish'
 
   get 'websites', to: 'websites#index'
   end

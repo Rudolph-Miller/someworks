@@ -22,27 +22,30 @@ class Task < ActiveRecord::Base
 	def publish ()
 		unless self.status == :published
 			self.status = :published
+			self.save
 		end
 	end
 
 	def unpublish ()
 		unless self.status == :unpublished
 			self.status = :unpublished
+			self.save
 		end
 	end
 
 	def close ()
 		unless self.status == :closed
 			self.status = :closed
+			self.save
 		end
 	end
 
 	def unclose ()
 		if self.status == :closed
 			self.status = :unpublished
+			self.save
 		end
 	end
-
 	def assign (params)
 		unless Task.where(:id => self.id).first.assigned?
 			task = AssignedTask.new()

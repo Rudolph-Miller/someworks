@@ -40,6 +40,19 @@ class Publishers::TasksController < ApplicationController
 		redirect_to :controller => 'tasks', :action => 'index'
 	end
 
+	def publish
+		task = Task.where(:id => params[:id]).first
+		if task.publish
+			redirect_to publishers_tasks_show_path(:id => params[:id])
+		end
+	end
+
+	def unpublish
+		task = Task.where(:id => params[:id]).first
+		if task.unpublish
+			redirect_to publishers_tasks_show_path(:id => params[:id])
+		end
+	end
 	private
 
 	def task_params
