@@ -5,11 +5,13 @@ class Article < ActiveRecord::Base
 	belongs_to :assigned_task
 	has_many :pictures
 
-	validates :status, presence: true
-	validates :status, numericality: :only_integer
-
 	def assigned_task ()
 		task_id = AssignedTask.where(:id => self.assigned_task_id).first.task_id
-		Task.where(:id => task_id)
+		Task.where(:id => task_id).first
 	end
+
+	def published? ()
+		self.assigned_task.published?
+	end
+
 end

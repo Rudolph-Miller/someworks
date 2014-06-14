@@ -14,8 +14,8 @@ Rails.application.routes.draw do
 
   namespace :writers do
   get 'articles', to: 'articles#index'
-  get 'articles/new'
-  post 'articles/create'
+  get 'articles/new', to: 'articles#new'
+  post 'articles/create', to: 'articles#create'
   get 'articles/delete'
 	get 'articles/edit'
 	get 'articles/edit'

@@ -13,3 +13,4 @@
           %td= article.content
           %td= article.assigned_task
           %td= link_to 'show', :controller => 'article', :action => 'show', :id => article.ig
+= link_to 'create article', writers_articles_new_path

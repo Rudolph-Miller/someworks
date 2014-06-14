@@ -1,2 +1,8 @@
-%h1 Writers::Articles#new
-%p Find me in app/views/writers/articles/new.html.erb
+%h1 Create Article
+= form_for @article, :url=> {:controller => 'articles', :action => 'create'} do |a|
+  %tr
+    %td Content
+    %td= a.text_area:content
+    %br
+  = a.submit 'create'
+  = link_to 'cancel', writers_articles_path
