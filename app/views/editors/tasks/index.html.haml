@@ -14,14 +14,14 @@
     %tbody
       -@unasssigned_tasks.each do |task|
         %tr
-          %td= task[:id]
-          %td= task[:title]
-          %td= task[:description]
-          %td= task[:start_date]
-          %td= task[:end_date]
-          %td= task[:number]
-          %td= task[:reward]
-          %td= task[:status]
+          %td= task.id
+          %td= task.title
+          %td= task.description
+          %td= task.start_date
+          %td= task.end_date
+          %td= task.number
+          %td= task.reward
+          %td= task.status
           %td= link_to 'show', :controller => 'tasks', :action => 'show', :id => task[:id]
           %td= link_to 'assign', :controller => 'tasks', :action => 'assign', :id => task[:id]
   %h2  AssignedTasks

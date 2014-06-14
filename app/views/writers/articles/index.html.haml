@@ -1,2 +1,15 @@
-%h1 Writers::Articles#index
-%p Find me in app/views/writers/articles/index.html.erb
+%h1 Articles
+%div.content
+  %table
+    %thead
+      %tr
+        %th id
+        %th content
+        %th assigned task
+    %tbody
+      -@articles.each do |article|
+        %tr
+          %td= article.id
+          %td= article.content
+          %td= article.assigned_task
+          %td= link_to 'show', :controller => 'article', :action => 'show', :id => article.ig
