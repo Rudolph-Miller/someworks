@@ -1,19 +1,24 @@
-%h1= @task[:title]
-%table
-  %body
-    - @task.attribute_names.each do |key|
-      %tr
-        %td= key
-        - if key != "status"
-          %td= @task[key] 
-        - else 
-          %td= @task.status
-- if @task.assigned?
-  %p= @task.who_assigned
-= link_to 'back', '/publishers/tasks'
-= link_to 'edit', publishers_tasks_publish_path(:id => @task[:id])
-- if @task.published?
-  = link_to 'unpublish', publishers_tasks_unpublish_path(:id => @task[:id]), :method => :post
-- else
-  = link_to 'publish', publishers_tasks_publish_path(:id => @task[:id]), :method => :post
-= link_to 'delete', publishers_tasks_delete_path(:id => @task[:id]), :method => :post
+%div.containew
+  %div.row
+    %div.col-md-10
+      %h1= @task[:title]
+      %table.table.table-striped.table-bordered
+        %body
+          - @task.attribute_names.each do |key|
+            %tr
+              %td= key
+              - if key != "status"
+                %td= @task[key] 
+              - else 
+                %td= @task.status
+      - if @task.assigned?
+        %p= @task.who_assigned
+    %div.col-md-2
+      %ul.nav.nav-stacked
+        %li= link_to 'back', '/publishers/tasks'
+        %li= link_to 'edit', publishers_tasks_edit_path(:id => @task[:id])
+        - if @task.published?
+          %li= link_to 'unpublish', publishers_tasks_unpublish_path(:id => @task[:id]), :method => :post
+        - else
+          %li= link_to 'publish', publishers_tasks_publish_path(:id => @task[:id]), :method => :post
+        %li= link_to 'delete', publishers_tasks_delete_path(:id => @task[:id]), :method => :post

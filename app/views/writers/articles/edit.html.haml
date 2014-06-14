@@ -1,8 +1,11 @@
-= form_for @article, :url=>{:action => 'update', :controller => 'articles', :id => @article[:id]}  do |a|
-  %tr
-    %td content
-    %td= a.text_area:content
-    %br
-  = a.submit 'update', :id => @article[:id]
-  = link_to 'cancel', writers_articles_path
+%div.container
+  %div.row
+    = form_for @article, :url=>{:action => 'update', :controller => 'articles', :id => @article[:id]}  do |a|
+      %div.col-md-8
+        %h2 Content
+        = a.text_area:content, :rows => '30', :cols => '80'
+      %div.col-md-2
+        %ul.nav.nav-stacked
+          %li.btn.btn-default= a.submit 'update', :id => @article[:id]
+          %li.btn.btn-default= link_to 'cancel', writers_articles_path
 

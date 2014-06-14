@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   namespace :editors do
   get 'tasks', to: 'tasks#index'
 	get 'tasks/show', to: 'tasks#show'
-	get 'tasks/assign', to: 'tasks#assign'
+	post 'tasks/assign', to: 'tasks#assign'
 	post 'tasks/unassign', :controller => 'tasks', :action => 'unassign'
 	get 'tasks/new', to: 'tasks#new'
 	post 'create', to: 'tasks#create'

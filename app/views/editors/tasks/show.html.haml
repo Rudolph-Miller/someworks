@@ -1,20 +1,24 @@
-%h1= @task[:title]
-%table
-  %body
-    - @task.attribute_names.each do |key|
-      %tr
-        %td= key
-        - if key != "status"
-          %td= @task[key] 
-        - else 
-          %td= @task.status
-    %td Assinged?
-    - if @task.assigned?
-      %td Assigned!
-    - else
-      %td Unassinged!
-= link_to 'back', '/editors/tasks'
-= link_to 'edit', :controller => 'tasks', :action => 'edit', :id => @task[:id]
-= link_to 'delete', editors_tasks_delete_path(:id => @task[:id]), :method => :post
--unless @task.assigned?
-  = link_to 'assign', :controller => 'tasks', :action => 'assign', :id => @task[:id], :editor_id => 1
+%div.container
+  %div.row
+    %div.col-md-10
+      %table.table.table-striped.table-bordered
+        %body
+          - @task.attribute_names.each do |key|
+            %tr
+              %td= key
+              - if key != "status"
+                %td= @task[key] 
+              - else 
+                %td= @task.status
+          %td Assinged?
+          - if @task.assigned?
+            %td Assigned!
+          - else
+            %td Unassinged!
+    %div.col-md-2
+      %ul.nav.nav-stacked
+        %li= link_to 'back', '/editors/tasks'
+        %li= link_to 'edit', :controller => 'tasks', :action => 'edit', :id => @task[:id]
+        %li= link_to 'delete', editors_tasks_delete_path(:id => @task[:id]), :method => :post
+        -unless @task.assigned?
+          %li= link_to 'assign', :controller => 'tasks', :action => 'assign', :id => @task[:id], :editor_id => 1

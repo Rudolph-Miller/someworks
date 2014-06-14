@@ -1,9 +1,11 @@
-%h1 Create Article
-= form_for @article, :url=> writers_articles_create_path do |a|
-  %tr
-    %td Content
-    %td= a.text_area:content
-    %br
-  = a.hidden_field:assigned_task_id, :value => params[:assigned_task_id] if params[:assigned_task_id].present?
-  = a.submit 'create'
-  = link_to 'cancel', writers_articles_path
+%div.container
+  %div.row
+    = form_for @article, :url=> writers_articles_create_path do |a|
+      %div.col-md-8
+        %h2 Content
+        = a.text_area:content, :rows => '30', :cols=>'80'
+        = a.hidden_field:assigned_task_id, :value => params[:assigned_task_id] if params[:assigned_task_id].present?
+      %div.col-md-2
+        %ul.nav.nav-stacked
+          %li.btn.btn-default= a.submit 'create'
+          %li.btn.btn-default= link_to 'cancel', writers_articles_path

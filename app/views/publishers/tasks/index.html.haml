@@ -1,33 +1,36 @@
-%div.content
-  %table
-    %thead
-      %tr
-        %th id
-        %th title
-        %th description
-        %th start
-        %th end
-        %th number
-        %th reward
-        %th published?
-    %tbody
-      -@tasks.each do |task|
-        %tr
-          %td= task.id
-          %td= task.title
-          %td= task.description
-          %td= task.start_date
-          %td= task.end_date
-          %td= task.number
-          %td= task.reward
-          - if task.published?
-            %td published!
-          - else
-            %td Not published yet!
-          %td= link_to 'show', :controller => 'tasks', :action => 'show', :id => task[:id]
-          - if task.published?
-            %td= link_to 'unpublish', publishers_tasks_unpublish_path(:id => task[:id]), :method => :post
-          - else
-            %td= link_to 'publish', publishers_tasks_publish_path(:id => task[:id]), :method => :post
-          %td= link_to 'delete', publishers_tasks_delete_path(:id => task[:id]), :method => :post
-  = link_to "create new task", publishers_tasks_new_path
+%div.container
+  %div.row
+    %div.col-md-8
+      %table.table
+        %thead
+          %tr
+            %th id
+            %th title
+            %th description
+            %th start
+            %th end
+            %th number
+            %th reward
+            %th published?
+        %tbody
+          -@tasks.each do |task|
+            %tr
+              %td= task.id
+              %td= task.title
+              %td= task.description
+              %td= task.start_date
+              %td= task.end_date
+              %td= task.number
+              %td= task.reward
+              - if task.published?
+                %td published!
+              - else
+                %td Not published yet!
+              %td= link_to 'show', :controller => 'tasks', :action => 'show', :id => task[:id]
+              - if task.published?
+                %td= link_to 'unpublish', publishers_tasks_unpublish_path(:id => task[:id]), :method => :post
+              - else
+                %td= link_to 'publish', publishers_tasks_publish_path(:id => task[:id]), :method => :post
+              %td= link_to 'delete', publishers_tasks_delete_path(:id => task[:id]), :method => :post
+    %div.col-md-4
+      = link_to "create new task", publishers_tasks_new_path

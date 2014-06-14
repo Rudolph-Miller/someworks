@@ -1,24 +1,28 @@
-%h1 Tasks
-%div.content
-  %table
-    %thead
-      %tr
-        %th id
-        %th title
-        %th description
-        %th start
-        %th end
-        %th number
-        %th reward
-    %tbody
-      -@tasks.each do |task|
-        %tr
-          %td= task.id
-          %td= task.title
-          %td= task.description
-          %td= task.start_date
-          %td= task.end_date
-          %td= task.number
-          %td= task.reward
-          %td= link_to 'show', :controller => 'assigned_tasks', :action => 'show', :id => task[:id]
-= link_to 'Articles', writers_articles_path
+%div.container
+  %div.row
+    %div.col-md-10
+      %ul.nav.nav-tabs
+        %li= link_to 'Articles', writers_articles_path
+        %li.active= link_to 'Tasks', writers_assigned_tasks_path
+      %h2 Tasks
+      %table.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th id
+            %th title
+            %th description
+            %th start
+            %th end
+            %th number
+            %th reward
+        %tbody
+          -@tasks.each do |task|
+            %tr
+              %td= task.id
+              %td= task.title
+              %td= task.description
+              %td= task.start_date
+              %td= task.end_date
+              %td= task.number
+              %td= task.reward
+              %td= link_to 'show', :controller => 'assigned_tasks', :action => 'show', :id => task[:id]
