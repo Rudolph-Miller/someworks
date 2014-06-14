@@ -1,0 +1,11 @@
+%h1= @task[:title]
+%table
+  %body
+    - @task.attribute_names.each do |key|
+      %tr
+        %td= key
+        - if key != "status"
+          %td= @task[key] 
+        - else 
+          %td= @task.status
+= link_to 'back', writers_assigned_tasks_path

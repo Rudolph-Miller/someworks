@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 	post 'articles/update'
 
   get 'assigned_tasks', to: 'assigned_tasks#index'
+	get 'assigned_tasks/show', to: 'assigned_tasks#show'
   end
 
   namespace :editors do
