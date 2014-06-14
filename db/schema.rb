@@ -13,23 +13,20 @@
 
 ActiveRecord::Schema.define(version: 20140614084012) do
 
-  create_table "add_assigedn_task_id_to_articles", force: true do |t|
-    t.integer  "assigned_task_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "articles", force: true do |t|
     t.string   "content"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "deleted_at"
+    t.integer  "assigned_task_id"
+    t.integer  "writer_id"
   end
 
   create_table "assigned_tasks", force: true do |t|
     t.integer  "task_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "editor_id"
   end
 
   create_table "categories", force: true do |t|
@@ -51,6 +48,7 @@ ActiveRecord::Schema.define(version: 20140614084012) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "article_id"
   end
 
   create_table "publishers", force: true do |t|
@@ -70,6 +68,8 @@ ActiveRecord::Schema.define(version: 20140614084012) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "deleted_at"
+    t.string   "task_creatable_type"
+    t.integer  "task_creatable_id"
   end
 
   create_table "websites", force: true do |t|
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 20140614084012) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "publisher_id"
   end
 
   create_table "writers", force: true do |t|
