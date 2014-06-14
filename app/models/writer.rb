@@ -27,7 +27,6 @@ class Writer < ActiveRecord::Base
 	private
 	def article_params ()
 		@params[:article][:writer_id] = 1
-		@params[:article][:assigned_task_id] = 1
 		@params.require(:article).permit(:content, :writer_id, :assigned_task_id, :created_at, :deleted_at, :updated_at)
 	end
 end

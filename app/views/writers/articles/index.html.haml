@@ -11,7 +11,11 @@
         %tr
           %td= article.id
           %td= article.content
-          %td= article.assigned_task
-          %td= link_to 'show', :controller => 'articles', :action => 'show', :id => article.id
+          -unless article.assigned_task.nil?
+            %td= article.assigned_task.task.title
+          -else
+            %td 
+          %td= link_to 'show', writers_articles_show_path(:id => article.id)
           %td= link_to 'delete', writers_articles_delete_path(:id => article[:id]), :method => :post
+= link_to 'Tasks', writers_assigned_tasks_path
 = link_to 'create article', writers_articles_new_path

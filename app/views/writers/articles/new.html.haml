@@ -1,8 +1,9 @@
 %h1 Create Article
-= form_for @article, :url=> {:controller => 'articles', :action => 'create'} do |a|
+= form_for @article, :url=> writers_articles_create_path do |a|
   %tr
     %td Content
     %td= a.text_area:content
     %br
+  = a.hidden_field:assigned_task_id, :value => params[:assigned_task_id] if params[:assigned_task_id].present?
   = a.submit 'create'
   = link_to 'cancel', writers_articles_path

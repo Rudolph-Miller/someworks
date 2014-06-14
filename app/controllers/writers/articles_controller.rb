@@ -9,6 +9,7 @@ class Writers::ArticlesController < ApplicationController
   end
 
   def create
+		p params
 		writer = Writer.new
 		if writer.create_article(params)
 			redirect_to writers_articles_path

@@ -8,4 +8,6 @@
           %td= @task[key] 
         - else 
           %td= @task.status
+= link_to 'article', writers_articles_new_path(:assigned_task_id => @task.id)
 = link_to 'back', writers_assigned_tasks_path
+
