@@ -9,7 +9,6 @@ class Article < ActiveRecord::Base
 	validates :status, numericality: :only_integer
 
 	def assigned_task ()
-		task_id = AssignedTask.where(:id => self.assigned_task_id).first.task_id
-		Task.where(:id => task_id)
+		self.assigned_task.task
 	end
 end

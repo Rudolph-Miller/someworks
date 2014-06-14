@@ -23,7 +23,7 @@
           %td= task[:reward]
           %td= task[:status]
           %td= link_to 'show', :controller => 'tasks', :action => 'show', :id => task[:id]
-          %td= link_to 'assign', :controller => 'tasks', :action => 'assign', :id => task[:id]
+          %td= link_to 'assign', :controller => 'tasks', :action => 'assign', :id => task[:id], :editor_id => 1
   %h2  AssignedTasks
   %table
     %thead

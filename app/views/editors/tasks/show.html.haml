@@ -17,4 +17,4 @@
 = link_to 'edit', :controller => 'tasks', :action => 'edit', :id => @task[:id]
 = link_to 'delete', editors_tasks_delete_path(:id => @task[:id]), :method => :post
 -unless @task.assigned?
-  = link_to 'assign', :controller => 'tasks', :action => 'assign', :id => @task[:id]
+  = link_to 'assign', :controller => 'tasks', :action => 'assign', :id => @task[:id], :editor_id => 1

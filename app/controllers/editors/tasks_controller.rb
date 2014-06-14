@@ -17,7 +17,7 @@ class Editors::TasksController < ApplicationController
 
 	def assign
 		task = Task.where(:id=>params[:id]).first
-		task.assign
+		task.assign(params)
 		redirect_to '/editors/tasks'
 	end
 
@@ -28,8 +28,8 @@ class Editors::TasksController < ApplicationController
 	end
 
 	def create 
-		@editor=Editor.new
-		if @editor.create_task(params)
+		editor=Editor.new
+		if editor.create_task(params)
 			redirect_to '/editors/tasks'
 		else
 			redirect_to :controller => 'tasks', :action => 'new'

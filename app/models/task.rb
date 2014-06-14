@@ -4,8 +4,7 @@ class Task < ActiveRecord::Base
 
 	enum status: {unpublished:0, published:1, closed:2}
 
-	belongs_to :publisher
-	belongs_to :editor
+	belongs_to :task_creatable, :polymorphic => true
 	belongs_to :category
 	has_one :assigned_task
   has_many :websites
@@ -44,19 +43,25 @@ class Task < ActiveRecord::Base
 		end
 	end
 
-	def assign ()
+	def assign (params)
 		unless Task.where(:id => self.id).first.assigned?
 			task = AssignedTask.new()
 			task.task_id = self.id
+			task.editor_id = params[:editor_id]
 			task.save
 		end
 	end
 
 	def unassign ()
-		AssignedTask.where(:task_id => self.id).first.destroy
+		self.assigned_task.destroy
 	end
 			
 	def assigned? ()
-		AssignedTask.where(:task_id => self.id).present?
+		self.assigned_task.present?
 	end
+
+	def who_assigned ()
+		self.assigned_task.editor
+	end
+
 end
