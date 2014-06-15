@@ -13,6 +13,6 @@
                 %td= @task.status
     %div.col-md-2
       %ul.nav.nav-stacks
-        %li= link_to 'article', writers_articles_new_path(:assigned_task_id => @task.id)
+        %li= link_to 'create article', writers_articles_new_path(:assigned_task_id => @task.id), :data => {:no_turbolink => 'true'}
         %li= link_to 'back', writers_assigned_tasks_path
 
