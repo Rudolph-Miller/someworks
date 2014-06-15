@@ -1,3 +1,17 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+convert = ->
+	input = $(".input-area").val()
+	result = marked(input)
+	console.log(result)
+	$(".output-area").html(result)
+
+$ ->
+	$(".input-area").blur -> convert()
+	$(".input-area").keyup -> convert()
+	$(".input-area").keydown -> convert()
+	$(".input-area").change -> convert()
+	$(".input-area").blur -> convert()
+
+	$(".convert").click ->
+		convert()
+	
+

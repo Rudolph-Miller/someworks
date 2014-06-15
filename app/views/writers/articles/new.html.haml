@@ -1,11 +1,16 @@
 %div.container
   %div.row
     = form_for @article, :url=> writers_articles_create_path do |a|
-      %div.col-md-8
+      %div.col-md-10
         %h2 Content
-        = a.text_area:content, :rows => '30', :cols=>'80'
+        %div.col-md-6
+          = a.text_area:content,:autofocus => :true, :rows => '30', :cols=>'70', :class=>'input-area'
+        %div.col-md-6.output-area
+          #p Result Area
         = a.hidden_field:assigned_task_id, :value => params[:assigned_task_id] if params[:assigned_task_id].present?
       %div.col-md-2
         %ul.nav.nav-stacked
           %li.btn.btn-default= a.submit 'create'
           %li.btn.btn-default= link_to 'cancel', writers_articles_path
+          %li.btn.btn-default
+            %button.btn.convert(type='button') force convert
