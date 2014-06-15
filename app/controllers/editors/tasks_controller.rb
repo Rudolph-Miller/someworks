@@ -1,14 +1,7 @@
 class Editors::TasksController < ApplicationController
   def index
-		@assigned_tasks = []
-		@unasssigned_tasks = []
-		Task.all.each do |task|
-			if task.assigned?
-				@assigned_tasks << task
-			else
-				@unasssigned_tasks << task
-			end
-		end
+		@assigned_tasks = Task.assigned_all
+		@unasssigned_tasks = Task.unassigned_all
   end
 
 	def show

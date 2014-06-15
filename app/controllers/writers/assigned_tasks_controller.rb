@@ -1,12 +1,7 @@
 class Writers::AssignedTasksController < ApplicationController
 
   def index
-		@tasks = []
-		Task.all.each do |task|
-			if task.assigned?
-				@tasks << task
-			end
-		end
+		@tasks = Task.assigned_all
   end
 
 	def show

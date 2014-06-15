@@ -67,4 +67,23 @@ class Task < ActiveRecord::Base
 		self.assigned_task.editor
 	end
 
+	def self.assigned_all ()
+		result = []
+		Task.all.each do |task|
+			if task.assigned?
+				result << task
+			end
+		end
+		result
+	end
+
+	def self.unassigned_all ()
+		result = []
+		Task.all.each do |task|
+			unless task.assigned?
+				result << task
+			end
+		end
+		result
+	end
 end
