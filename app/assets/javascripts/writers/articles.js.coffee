@@ -34,7 +34,7 @@ imguploader = (input, result) ->
 	$(".output-area").html(result)
 
 upload_box = (uuid) ->
-	"<form id=\"image-#{uuid}\"><input type=\"file\"></input><button type=\"button\" class=\"btn btn-default\" id=\"btn-#{uuid}\">upload</button></form>"
+	"<form id=\"image-#{uuid}\"><input type=\"file\"></input></form>"
 
 
 generate_uuid = ->

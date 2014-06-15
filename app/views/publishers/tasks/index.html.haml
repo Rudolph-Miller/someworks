@@ -1,6 +1,7 @@
 %div.container
   %div.row
     %div.col-md-8
+      = link_to 'Create Task', publishers_tasks_new_path,{:class => "btn btn-default btn-lg"}
       %table.table
         %thead
           %tr
@@ -33,4 +34,3 @@
                 %td= link_to 'publish', publishers_tasks_publish_path(:id => task[:id]), :method => :post
               %td= link_to 'delete', publishers_tasks_delete_path(:id => task[:id]), :method => :post
     %div.col-md-4
-      = link_to "create new task", publishers_tasks_new_path

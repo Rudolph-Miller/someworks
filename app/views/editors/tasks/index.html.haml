@@ -4,54 +4,53 @@
       %ul.nav.nav-tabs
         %li.active= link_to 'tasks', editors_tasks_path
         %li= link_to 'assigned tasks', editors_assigned_tasks_path
-      %div.col-md-6
-        %h2 UnassignedTasks 
-        %table
-          %thead
-            %tr
-              %th id
-              %th title
-              %th start
-              %th end
-              %th number
-              %th reward
-              %th published?
-          %tbody
-            -@unasssigned_tasks.each do |task|
+      = link_to 'Create Task', editors_tasks_new_path,{:class => "btn btn-default btn-lg"}
+      %div
+        %div.col-md-6
+          %h2 UnassignedTasks 
+          %table
+            %thead
               %tr
-                %td= task.id
-                %td= task.title
-                %td= task.start_date
-                %td= task.end_date
-                %td= task.number
-                %td= task.reward
-                %td= task.status
-                %td.btn= link_to 'show', editors_tasks_show_path(:id => task.id)
-                %td.btn= link_to 'assign', editors_tasks_assign_path(:id => task.id), :method => :post
-      %div.col-md-6
-        %h2  AssignedTasks
-        %table
-          %thead
-            %tr
-              %th id
-              %th title
-              %th start
-              %th end
-              %th number
-              %th reward
-              %th published?
-          %tbody
-            -@assigned_tasks.each do |task|
+                %th id
+                %th title
+                %th start
+                %th end
+                %th number
+                %th reward
+                %th published?
+            %tbody
+              -@unasssigned_tasks.each do |task|
+                %tr
+                  %td= task.id
+                  %td= task.title
+                  %td= task.start_date
+                  %td= task.end_date
+                  %td= task.number
+                  %td= task.reward
+                  %td= task.status
+                  %td.btn= link_to 'show', editors_tasks_show_path(:id => task.id)
+                  %td.btn= link_to 'assign', editors_tasks_assign_path(:id => task.id), :method => :post
+        %div.col-md-6
+          %h2  AssignedTasks
+          %table
+            %thead
               %tr
-                %td= task.id
-                %td= task.title
-                %td= task.start_date
-                %td= task.end_date
-                %td= task.number
-                %td= task.reward
-                %td= task.status
-                %td.btn= link_to 'show', editors_tasks_show_path(:id => task.id)
-                %td.btn= link_to 'unassign', editors_tasks_unassign_path(:id => task.id), :method => :post
-    %div.col-md-2
-      %ul.nav.nav-stacked
-        %li= link_to 'Create Task', editors_tasks_new_path
+                %th id
+                %th title
+                %th start
+                %th end
+                %th number
+                %th reward
+                %th published?
+            %tbody
+              -@assigned_tasks.each do |task|
+                %tr
+                  %td= task.id
+                  %td= task.title
+                  %td= task.start_date
+                  %td= task.end_date
+                  %td= task.number
+                  %td= task.reward
+                  %td= task.status
+                  %td.btn= link_to 'show', editors_tasks_show_path(:id => task.id)
+                  %td.btn= link_to 'unassign', editors_tasks_unassign_path(:id => task.id), :method => :post
