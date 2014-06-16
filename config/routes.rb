@@ -17,11 +17,14 @@ Rails.application.routes.draw do
   get 'articles', to: 'articles#index'
   get 'articles/new', to: 'articles#new'
 	post 'articles/create', to: 'articles#create'
+	patch 'articles/create', to: 'articles#create'
 	get 'articles/show', to: 'articles#show'
 	patch 'articles/update', to: 'articles#update'
 	get 'articles/edit'
 	post 'articles/update'
-	post 'articles/delete', :controller => 'articles', :action => 'delete'
+	post 'articles/delete', to: 'articles#delete'
+	post 'articles/upload_picture', to: 'articles#upload_picture'
+	match 'articles/store/images/:token1/:token2', to: 'articles#show_image', via: :get
 
   get 'assigned_tasks', to: 'assigned_tasks#index'
 	get 'assigned_tasks/show', to: 'assigned_tasks#show'
@@ -41,6 +44,7 @@ Rails.application.routes.draw do
   get 'assigned_tasks', to: 'assigned_tasks#index'
 	post 'assigned_tasks/unassign', :controller => 'assigned_tasks', :action => 'unassign'
   end
+
 
 end
 

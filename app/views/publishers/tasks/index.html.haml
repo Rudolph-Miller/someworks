@@ -1,4 +1,4 @@
-%div.container
+%div.container.task-index
   %div.row
     %div.col-md-8
       = link_to 'Create Task', publishers_tasks_new_path,{:class => "btn btn-default btn-lg"}
@@ -7,18 +7,19 @@
           %tr
             %th id
             %th title
-            %th description
             %th start
             %th end
             %th number
             %th reward
             %th published?
+            %th
+            %th
+            %th
         %tbody
           -@tasks.each do |task|
             %tr
               %td= task.id
               %td= task.title
-              %td= task.description
               %td= task.start_date
               %td= task.end_date
               %td= task.number

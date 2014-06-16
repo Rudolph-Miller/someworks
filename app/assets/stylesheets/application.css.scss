@@ -1,10 +1,58 @@
 @import "bootstrap";
 
-.output-area {
-	border-style: solid;
-	height: 60rem;
+.edit-article{
+	.output-area {
+		border-style: solid;
+		height: 60rem;
+	}
+	.input-area {
+		height: 60rem;
+		width: 100%;
+	}
 }
 
-.input-area {
-	height: 60rem;
+.edit-task {
+	padding-top: 5rem;
+	padding-bottom: 5rem;
+	#task_title {
+		width: 500px;
+		height: 6rem;
+	}
+	.output-area {
+		border-style: solid;
+		height: 21rem;
+		width: 440px;
+	}
+	.input-area {
+		height: 20rem;
+		width: 440px;
+	}
+	.btns {
+		padding-top: 2rem;
+	}
 }
+
+.task-index {
+	padding-top: 5rem;
+	padding-bottom: 5rem;
+}
+
+.show-article {
+	padding-top: 5rem;
+	padding-bottom: 5rem;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */

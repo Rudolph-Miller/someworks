@@ -1,7 +1,7 @@
-%div.container
-  %div.row
-    = form_for @task, :url=>{:action => 'update', :controller => 'tasks', :id => @task[:id]}  do |t|
-      %div.col-md-8
+.container
+  .row
+    = form_for @task, :url=>editors_tasks_update_path(:id=>@task[:id]) do |t|
+      .col-md-8
         %table.table.table-striped.table-bordered
           %tr
             %td Title

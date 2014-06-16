@@ -1,17 +1,21 @@
-%div.container
-  %div.row
+.container.edit-article
+  .row
     = form_for @article, :url=> writers_articles_create_path do |a|
-      %div.col-md-10
+      .col-md-10
         %h2 Content
-        %div.col-md-6
-          = a.text_area:content,:autofocus => :true, :rows => '30', :cols=>'70', :class=>'input-area'
-        %div.col-md-6.output-area
-          #p Result Area
+        %ul.nav.nav-tabs
+          %li.btn.btn-default.btab3{:tupe => "button"} Separate
+          %li.btn.btn-default.btab1{:type => "button"} Article
+          %li.btn.btn-default.btab2{:type => "button"} Preview
+        .col-md-6.tab1
+          = a.text_area:content,:autofocus => :true, :cols=>'70', :class=>'input-area'
+        .col-md-6.output-area.tab2
+          %p Result Area
         = a.hidden_field:assigned_task_id, :value => params[:assigned_task_id] if params[:assigned_task_id].present?
-      %div.col-md-2
+        %input#tokens(style="display:none;" name="tokens")
+      .col-md-2
         %ul.nav.nav-stacked
-          %li.btn.btn-default= a.submit 'create'
+          %li.btn.btn-default#save= a.submit 'create'
           %li.btn.btn-default= link_to 'cancel', writers_articles_path
-          %li.btn.btn-default
-            %button.btn.convert(type='button') force convert
           %li.uploader
+

@@ -1,34 +1,28 @@
-%div.container
+%div.container.edit-task
   %div.row
-    = form_for @task, :url=>{:action => 'update', :controller => 'tasks', :id => @task[:id]}  do |t|
-      %div.col-md-8
-        %table.table.table-striped.table-bordered
-          %tr
-            %td Title
-            %td= t.text_field:title
-            %br
-          %tr
-            %td Description
-            %td= t.text_area:description,:cols=>'30', :rows=>'5'
-            %br
-          %tr
-            %td StartDate
-            %td= t.date_select:start_date
-            %br
-          %tr
-            %td EndDate
-            %td= t.date_select:end_date
-            %br
-          %tr
-            %td Reward
-            %td= t.number_field:reward
-            %br
-          %tr
-            %td Number
-            %td= t.number_field:number
-            %br
+    = form_for @task, :url=>publishers_tasks_update_path(:id=>@task.id) do |t|
+      %div.col-md-10
+        %h2 Title
+        %br
+        = t.text_field:title
+        %br
+        %h2 Description
+        %div.col-md-6
+          = t.text_area:description, :cols=>'30', :rows=>'5',:class=>'input-area'
+        %div.output-area.col-md-6
+          %p Result Area
+        %h3 StartDate
+        = t.date_select:start_date
+        %br
+        %h3 EndDate
+        = t.date_select:end_date
+        %br
+        %h3 Reward
+        %td= t.number_field:reward
+        %h3 Number
+        = t.number_field:number
+        %br
       %div.col-md-2
-        %ul.nav.nav-stacked
-          %li.btn= t.submit 'update', :id => @task[:id]
-          %li.btn= link_to 'cancel', '/publishers/tasks'
-
+        %ul.btns
+          %li.btn.btn-lg= t.submit 'update'
+          %li.btn.btn-lg= link_to 'cancel', '/publishers/tasks'

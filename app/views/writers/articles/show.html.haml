@@ -1,4 +1,4 @@
-%div.container
+%div.container.show-article
   %div.row
     %div.col-md-10
       -if @article.assigned_task.present?
@@ -11,10 +11,14 @@
             %tr
               %td= key
               %td= @article[key] 
+          %tr
+            %td images
+            - @article.pictures.each do |picture|
+              %td= picture.image_file_name
     %div.col-md-2
       %ul.nav.nav-stacks
         -if @article.assigned_task.present?
           %li= link_to 'task info', writers_assigned_tasks_show_path(:id => @article.assigned_task_id)
         %li= link_to 'back', writers_articles_path
-        %li= link_to 'edit', writers_articles_edit_path(:id => @article.id), :data => {:no_turbolink => 'true'}
+        %li= link_to 'edit', writers_articles_edit_path(:id => @article.id)
         %li= link_to 'delete', writers_articles_delete_path(:id => @article.id), :method => :post

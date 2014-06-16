@@ -3,6 +3,5 @@
 FactoryGirl.define do
   factory :article do
     content "MyString"
-    status 1
   end
 end

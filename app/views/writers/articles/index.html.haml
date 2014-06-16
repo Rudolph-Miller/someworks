@@ -1,11 +1,11 @@
-%div.container
-  %div.row
-    %div.col-md-10
+.container.edit-article
+  .row
+    .col-md-10
       %ul.nav.nav-tabs
         %li.active= link_to 'Articles', writers_articles_path
         %li= link_to 'Tasks', writers_assigned_tasks_path
       %h2 Articles
-      %li.btn.btn-default.btn-lg= link_to 'create article', writers_articles_new_path, :data => {:no_turbolink => 'true'}
+      %li.btn.btn-default.btn-lg= link_to 'create article', writers_articles_new_path
       %table.table.table-striped.table-bordered
         %thead
           %tr

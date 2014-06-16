@@ -9,6 +9,19 @@ class Writer < ActiveRecord::Base
 		@params = params
 		article = Article.new(article_params)
 		article.save
+		tokens = params[:tokens]
+		unless tokens.nil?
+			tokens.split(",").each do |token|
+				lst = token.split(":")
+				token1 = lst[0]
+				token2 = lst[1]
+				picture = Picture.where(:token1 => token1, :token2 => token2).first
+				unless picture.nil?
+					picture.article_id = article.id
+					picture.save
+				end
+			end
+		end
 	end
 
 	def update_article (params)
@@ -16,6 +29,19 @@ class Writer < ActiveRecord::Base
 		article = Article.where(:id => params[:id]).first
 		article.update_attributes(article_params)
 		article.save
+		tokens = params[:tokens]
+		unless tokens.nil?
+			tokens.split(",").each do |token|
+				lst = token.split(":")
+				token1 = lst[0]
+				token2 = lst[1]
+				picture = Picture.where(:token1 => token1, :token2 => token2).first
+				unless picture.nil?
+					picture.article_id = article.id
+					picture.save
+				end
+			end
+		end
 	end
 
 	def delete_article (params)
