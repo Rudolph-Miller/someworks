@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140614084012) do
+ActiveRecord::Schema.define(version: 20140615155855) do
 
   create_table "articles", force: true do |t|
     t.string   "content"
@@ -49,6 +49,9 @@ ActiveRecord::Schema.define(version: 20140614084012) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "article_id"
+    t.datetime "deleted_at"
+    t.integer  "token1",             limit: 8
+    t.integer  "token2",             limit: 8
   end
 
   create_table "publishers", force: true do |t|
