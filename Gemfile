@@ -11,8 +11,6 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer',  platforms: :ruby
-# Use mysql as the database for Active Record
-gem 'mysql2'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -41,6 +39,13 @@ group :development, :test do
 	gem 'rspec-rails'
 	gem 'factory_girl_rails'
 	gem 'faker'
+	# Use mysql as the database for Active Record
+	gem 'mysql2'
+end
+
+group :production do
+	gem 'pg'
+	gem 'rails_12factor'
 end
 
 gem 'paperclip'
@@ -48,3 +53,4 @@ gem 'bootstrap-sass'
 gem 'haml-rails'
 gem 'erb2haml'
 gem 'enumerize'
+gem 'devise'
