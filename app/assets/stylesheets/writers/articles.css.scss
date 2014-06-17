@@ -1,9 +1,13 @@
-.new-article.output-area {
-	border-style: solid;
-	height: 60rem;
+.edit-article {
+	.output-area {
+		border-style: solid;
+		height: 60rem;
+		overflow: hidden;
+	}
+	.input-area {
+		height: 60rem;
+		width: 100%;
+	}
 }
 
-.new-article.input-area {
-	height: 60rem;
-}
 
