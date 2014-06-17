@@ -47,8 +47,16 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+#production:
+#  <<: *default
+#  database: someworks_production
+#  username: someworks
+#  password: <%= ENV['SOMEWORKS_DATABASE_PASSWORD'] %>
+
 production:
-  <<: *default
-  database: someworks_production
-  username: someworks
-  password: <%= ENV['SOMEWORKS_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  encoding: utf8
+  database: someworks
+  port: 5432
+  username: 
+  password:
