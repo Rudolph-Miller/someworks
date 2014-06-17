@@ -1,0 +1,16 @@
+change_tab = (name) ->
+  console.log(name)
+  $(".tab1, .tab2, tab3").css("display", "none")
+  $("#{name}").css("display", "block")
+              .css("width", "100%")
+
+$ ->
+  console.log("hi")
+  $(".btab1").click -> change_tab (".tab1")
+  $(".btab2").click -> change_tab(".tab2")
+  $(".btab3").click -> separate_tab (".tab1", ".tab3"))
+  
+
+
+
+	
