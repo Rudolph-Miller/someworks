@@ -1,46 +1,4 @@
 @import "bootstrap";
-
-.edit-article{
-	.output-area {
-		border-style: solid;
-		height: 60rem;
-	}
-	.input-area {
-		height: 60rem;
-		width: 100%;
-	}
-}
-
-.edit-task {
-	padding-top: 5rem;
-	padding-bottom: 5rem;
-	#task_title {
-		width: 500px;
-		height: 6rem;
-	}
-	.output-area {
-		border-style: solid;
-		height: 21rem;
-		width: 440px;
-	}
-	.input-area {
-		height: 20rem;
-		width: 440px;
-	}
-	.btns {
-		padding-top: 2rem;
-	}
-}
-
-.task-index {
-	padding-top: 5rem;
-	padding-bottom: 5rem;
-}
-
-.show-article {
-	padding-top: 5rem;
-	padding-bottom: 5rem;
-}
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
