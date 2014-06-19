@@ -1,10 +1,10 @@
 :scss
   .active#tab1 {
-      color: blue;
+      color: green;
       opacity: 0.8;
     }
   .active#tab2 {
-      color: blue;
+      color: green;
       opacity: 0.8;
     }
   .active#tab1_content {
@@ -23,11 +23,11 @@
     display: none;
   }
   #tab1 {
-    color: blue;
+    color: green;
     opacity: 0.5;
   }
   #tab2 {
-    color: blue;
+    color: green;
     opacity: 0.5;
   }
  
@@ -36,11 +36,10 @@
     .col-md-10
       %ul.nav.nav-tabs
         %li
-          %a.active#tab1 Articles
+          %a.active#tab1.btn Articles
         %li
-          %a#tab2 Tasks
+          %a#tab2.btn Tasks
       #tab1_content.active
-        %h2 Articles
         %li.btn.btn-default.btn-lg= link_to 'create article', writers_articles_new_path
         %table.table.table-striped.table-bordered
           %thead
@@ -62,7 +61,6 @@
                 %td= link_to 'show', writers_articles_show_path(:id => article.id)
                 %td= link_to 'delete', writers_articles_delete_path(:id => article[:id]), :method => :post
       #tab2_content
-        %h2 Tasks
         %table.table.table-striped.table-bordered
           %thead
             %tr
@@ -81,7 +79,11 @@
 :coffee
   $("#tab1").click ->
     $("#tab1_content").addClass("active")
+    $("#tab1").addClass("active")
     $("#tab2_content").removeClass("active")
+    $("#tab2").removeClass("active")
   $("#tab2").click ->
     $("#tab2_content").addClass("active")
+    $("#tab2").addClass("active")
     $("#tab1_content").removeClass("active")
+    $("#tab1").removeClass("active")

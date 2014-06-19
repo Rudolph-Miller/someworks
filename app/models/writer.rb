@@ -64,4 +64,21 @@ class Writer < ActiveRecord::Base
 	def article_params ()
 		@params.require(:article).permit(:content, :writer_id, :assigned_task_id, :created_at, :deleted_at, :updated_at, :title)
 	end
+
+  def finished_writing (params)
+    article = Article.where(:id => params[:id]).first
+    if article.writing?
+      article.status = 'finished_writing'
+    end
+  end
+
+  def writing (params)
+    article = Article.where(:id => params[:id]).first
+    article.status = 'writing'
+  end
+
+  def finished_editing (params)
+    article = Article.where(:id => params[:id]).first
+    article.status = 'finished_editing'
+  end
 end

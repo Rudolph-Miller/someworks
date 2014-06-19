@@ -18,4 +18,25 @@ class Editor < ActiveRecord::Base
     end
     result
   end
+
+  def keeping (params)
+    article = Article.where(:id => parms[:id]).first
+    if article.status == 'finished_writing'
+      article.status = 'keeping'
+    end
+  end
+
+  def editing (params)
+    article = Article.where(:id => parms[:id]).first
+    if article.status == 'keeping' || article.status == 'finished_editing'
+      article.status == 'editing'
+    end
+  end
+
+  def finish (params)
+    article = Article.where(:id => params[:id]).first
+    if article.status == 'editing'
+      article.status == 'finish'
+    end
+  end
 end
