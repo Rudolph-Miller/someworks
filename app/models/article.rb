@@ -2,7 +2,7 @@ class Article < ActiveRecord::Base
 	extend Enumerize
   default_scope {where(:deleted_at => nil)}
 
-	enum status: {writing:0, finished_writing:1, keeping:2, editing:3, finished_editing:4}
+	enum status: {writing:0, finished_writing:1, keeping:2, editing:3, finished_editing:4, finish:5}
 
   belongs_to :writer
   belongs_to :assigned_task
@@ -27,6 +27,8 @@ class Article < ActiveRecord::Base
       '差し戻し'
     elsif self.status == 'finished_editing'
       '編集完了'
+    elsif self.status == 'finish'
+      '完成'
     else
       'Unknown Status'
     end
