@@ -17,6 +17,7 @@ class Writer < ActiveRecord::Base
     end
     p article
     article.writer_id = self.id
+    article.status = 'writing'
 		article.save
 		tokens = params[:tokens]
 		unless tokens.nil?

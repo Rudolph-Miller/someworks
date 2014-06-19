@@ -15,4 +15,20 @@ class Article < ActiveRecord::Base
   def task_title ()
     self.assigned_task.task.title
   end
+  
+  def status_in_japanese ()
+    if self.status == 'writing'
+      '執筆中'
+    elsif self.status == 'finished_writing'
+      '原稿完成'
+    elsif self.status == 'keeping'
+      '編集預かり'
+    elsif self.status == 'editing'
+      '差し戻し'
+    elsif self.status == 'finished_editing'
+      '編集完了'
+    else
+      'Unknown Status'
+    end
+  end
 end

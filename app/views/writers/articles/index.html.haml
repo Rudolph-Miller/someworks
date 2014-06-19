@@ -47,6 +47,9 @@
             %tr
               %th Title
               %th Due
+              %th Status
+              %th Show
+              %th Delete
           %tbody
             -@articles.each do |article|
               %tr
@@ -55,6 +58,7 @@
                   %td No Task
                 - else 
                   %td= article.assigned_task.task.end_date.strftime("%m月%d日 %H:%M")
+                %td= article.status_in_japanese
                 %td= link_to 'show', writers_articles_show_path(:id => article.id)
                 %td= link_to 'delete', writers_articles_delete_path(:id => article[:id]), :method => :post
       #tab2_content
