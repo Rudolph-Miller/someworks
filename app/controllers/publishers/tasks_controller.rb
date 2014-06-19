@@ -2,6 +2,7 @@ class Publishers::TasksController < ApplicationController
 
 	def index
 		@tasks=Task.all
+    @mytasks = current_publisher.tasks
 	end
 
 	def create

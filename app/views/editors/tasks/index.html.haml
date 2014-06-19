@@ -34,7 +34,7 @@
                   %td= task.reward
                   %td= task.status
                   %td.btn= link_to 'show', editors_tasks_show_path(:id => task.id)
-                  %td.btn= link_to 'assign', editors_tasks_assign_path(:id => task.id), :method => :post
+                  %td.btn= link_to 'assign', editors_tasks_assign_path(:id => task.id, :editor_id => current_editor.id), :method => :post
         %div.col-md-6
           %h2  AssignedTasks
           %table

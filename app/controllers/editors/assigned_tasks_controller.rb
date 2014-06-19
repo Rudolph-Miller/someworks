@@ -1,6 +1,6 @@
 class Editors::AssignedTasksController < ApplicationController
   def index
-		@tasks= Task.assigned_all
+    @tasks = current_editor.assigned_tasks_list
   end
 
 	def unassign

@@ -21,4 +21,4 @@
         %li= link_to 'edit', :controller => 'tasks', :action => 'edit', :id => @task[:id]
         %li= link_to 'delete', editors_tasks_delete_path(:id => @task[:id]), :method => :post
         -unless @task.assigned?
-          %li= link_to 'assign', :controller => 'tasks', :action => 'assign', :id => @task[:id], :editor_id => 1
+          %li= link_to 'assign', editors_tasks_assign_path(:id => @task[:id],:editor_id => current_editor.id), :method => :post
