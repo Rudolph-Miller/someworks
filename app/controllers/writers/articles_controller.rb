@@ -1,6 +1,6 @@
 class Writers::ArticlesController < ApplicationController
   def index
-		@articles = Article.all
+		@articles = current_writer.articles
   end
 
   def new
@@ -8,8 +8,7 @@ class Writers::ArticlesController < ApplicationController
   end
 
   def create
-		writer = Writer.new
-		if writer.create_article(params)
+		if current_writer.create_article(params)
 			redirect_to writers_articles_path
 		else
 			redirect_to (:back)
@@ -26,8 +25,7 @@ class Writers::ArticlesController < ApplicationController
 
 
 	def update
-		writer = Writer.new
-		if writer.update_article(params)
+		if current_writer.update_article(params)
 			redirect_to writers_articles_show_path(:id => params[:id])
 		else
 			 redirect_to (:back)
@@ -35,8 +33,7 @@ class Writers::ArticlesController < ApplicationController
 	end
 
 	def delete
-		writer = Writer.new
-		writer.delete_article(params)
+		current_writer.delete_article(params)
 		redirect_to writers_articles_path
 	end
 
@@ -46,7 +43,6 @@ class Writers::ArticlesController < ApplicationController
 		picture.image_file_name = params[:"image"].original_filename
 		picture.token1 = params[:token1].to_i
 		picture.token2 = params[:token2].to_i
-		p picture
 		if picture.save
 			render :file, picture.image
 		else
