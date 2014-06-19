@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :publishers
+  devise_for :editors
+  devise_for :writers
   namespace :publishers do
   get 'tasks', to: 'tasks#index'
   post 'tasks/create', to: 'tasks#create'

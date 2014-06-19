@@ -3,5 +3,7 @@
 FactoryGirl.define do
   factory :editor do
     name "MyString"
+    email "editor@sample.com"
+    password "password"
   end
 end
