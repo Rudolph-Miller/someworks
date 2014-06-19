@@ -1,5 +1,8 @@
 class Article < ActiveRecord::Base
+	extend Enumerize
   default_scope {where(:deleted_at => nil)}
+
+	enum status: {writing:0, finished_writing:1, keeping:2, editing:3, finished_editing:4}
 
   belongs_to :writer
   belongs_to :assigned_task

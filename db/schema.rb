@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140619140726) do
+ActiveRecord::Schema.define(version: 20140619144545) do
 
   create_table "articles", force: true do |t|
     t.string   "content"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20140619140726) do
     t.integer  "assigned_task_id"
     t.integer  "writer_id"
     t.string   "title"
+    t.integer  "status"
   end
 
   create_table "assigned_tasks", force: true do |t|
