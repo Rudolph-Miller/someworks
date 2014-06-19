@@ -10,4 +10,28 @@
 	}
 }
 
+#active {
+  a {
+    color: blue;
+    opacity: 0.8;
+  }
+  #tab1_content {
+    display: block;
+    padding: 20px 20px 20px 20px;
+  }
+  #tab2_content {
+    display: block;
+    padding: 20px 20px 20px 20px;
+  }
+}
+
+#tab1_content {
+  display: none;
+}
+#tab2_content {
+  display: none;
+}
+  
+
+ 
 

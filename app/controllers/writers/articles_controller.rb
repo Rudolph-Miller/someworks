@@ -1,10 +1,16 @@
 class Writers::ArticlesController < ApplicationController
   def index
 		@articles = current_writer.articles
+    @tasks = Task.assigned_all
   end
 
   def new
-		@article = Article.new
+    unless params[:assigned_task_id].nil?
+      @article = Article.new(:assigned_task_id => params[:assigned_task_id])
+    else
+      @article = Article.new
+    end
+    p @article
   end
 
   def create

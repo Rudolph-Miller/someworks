@@ -9,6 +9,9 @@
       height: 60rem;
       width: 100%;
     }
+    #title {
+      font-size: 30px;
+    }
   }
 
 
@@ -16,6 +19,12 @@
   .row
     = form_for @article, :url=> writers_articles_create_path do |a|
       .col-md-10
+        - if @article.assigned_task_id.present?
+          %h2= @article.task_title
+          = a.hidden_field:assigned_task_id, :val=>@article.assigned_task_id
+        - else
+          = label :article, :title, :id => "title"
+          = a.text_field:title, :autofocus => true, :s => '1'
         %h2 Content
         %ul.nav.nav-tabs
           %li.btn.btn-default.btab3{:tupe => "button"} Separate
@@ -25,7 +34,6 @@
           = a.text_area:content,:autofocus => :true, :cols=>'70', :class=>'input-area'
         .col-md-6.output-area.tab2
           %p Result Area
-        = a.hidden_field:assigned_task_id, :value => params[:assigned_task_id] if params[:assigned_task_id].present?
         %input#tokens(style="display:none;" name="tokens")
       .col-md-2
         %ul.nav.nav-stacked

@@ -12,6 +12,11 @@ class Writer < ActiveRecord::Base
 	def create_article (params)
 		@params = params
 		article = Article.new(article_params)
+    unless article.assigned_task_id.nil?
+      article.title = article.task_title
+    end
+    p article
+    article.writer_id = self.id
 		article.save
 		tokens = params[:tokens]
 		unless tokens.nil?
@@ -56,7 +61,6 @@ class Writer < ActiveRecord::Base
 
 	private
 	def article_params ()
-		@params[:article][:writer_id] = 1
-		@params.require(:article).permit(:content, :writer_id, :assigned_task_id, :created_at, :deleted_at, :updated_at)
+		@params.require(:article).permit(:content, :writer_id, :assigned_task_id, :created_at, :deleted_at, :updated_at, :title)
 	end
 end

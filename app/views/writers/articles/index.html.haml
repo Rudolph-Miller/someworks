@@ -1,38 +1,83 @@
 :scss
-  .edit-article {
-    .output-area {
-      border-style: solid;
-      height: 60rem;
-      overflow: hidden;
+  .active#tab1 {
+      color: blue;
+      opacity: 0.8;
     }
-    .input-area {
-      height: 60rem;
-      width: 100%;
+  .active#tab2 {
+      color: blue;
+      opacity: 0.8;
     }
-  }
+  .active#tab1_content {
+      display: block;
+      padding: 20px 20px 20px 20px;
+    }
+  .active#tab2_content {
+      display: block;
+      padding: 20px 20px 20px 20px;
+    }
 
+  #tab1_content {
+    display: none;
+  }
+  #tab2_content {
+    display: none;
+  }
+  #tab1 {
+    color: blue;
+    opacity: 0.5;
+  }
+  #tab2 {
+    color: blue;
+    opacity: 0.5;
+  }
+ 
 .container.edit-article
   .row
     .col-md-10
       %ul.nav.nav-tabs
-        %li.active= link_to 'Articles', writers_articles_path
-        %li= link_to 'Tasks', writers_assigned_tasks_path
-      %h2 Articles
-      %li.btn.btn-default.btn-lg= link_to 'create article', writers_articles_new_path
-      %table.table.table-striped.table-bordered
-        %thead
-          %tr
-            %th id
-            %th content
-            %th assigned task
-        %tbody
-          -@articles.each do |article|
+        %li
+          %a.active#tab1 Articles
+        %li
+          %a#tab2 Tasks
+      #tab1_content.active
+        %h2 Articles
+        %li.btn.btn-default.btn-lg= link_to 'create article', writers_articles_new_path
+        %table.table.table-striped.table-bordered
+          %thead
             %tr
-              %td= article.id
-              %td= article.content
-              -unless article.assigned_task.nil?
-                %td= article.assigned_task.task.title
-              -else
-                %td 
-              %td= link_to 'show', writers_articles_show_path(:id => article.id)
-              %td= link_to 'delete', writers_articles_delete_path(:id => article[:id]), :method => :post
+              %th Title
+              %th Due
+          %tbody
+            -@articles.each do |article|
+              %tr
+                %td= article.title
+                - if article.assigned_task.nil?
+                  %td No Task
+                - else 
+                  %td= article.assigned_task.task.end_date.strftime("%m月%d日 %H:%M")
+                %td= link_to 'show', writers_articles_show_path(:id => article.id)
+                %td= link_to 'delete', writers_articles_delete_path(:id => article[:id]), :method => :post
+      #tab2_content
+        %h2 Tasks
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Title
+              %th Due
+              %th 本数
+              %th 報酬
+          %tbody
+            -@tasks.each do |task|
+              %tr
+                %td= task.title
+                %td= task.end_date.strftime("%m月%d日 %H:%M")
+                %td= task.number
+                %td= task.reward
+                %td= link_to 'show', :controller => 'assigned_tasks', :action => 'show', :id => task[:id]
+:coffee
+  $("#tab1").click ->
+    $("#tab1_content").addClass("active")
+    $("#tab2_content").removeClass("active")
+  $("#tab2").click ->
+    $("#tab2_content").addClass("active")
+    $("#tab1_content").removeClass("active")
