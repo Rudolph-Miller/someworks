@@ -63,11 +63,13 @@
         #tab2_content
           %table.table.table-striped.table-bordered
             %thead
+              %th Name
               %th Status
               %th Update
-              %th Show
+              %th 詳細
             -@articles.each do |article|
               %tbody
+                %td= article.writer.name
                 %td= article.status_in_japanese
                 %td= article.updated_at
                 %td= link_to 'show', editors_tasks_article_path(:id => article.id)

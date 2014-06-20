@@ -69,7 +69,8 @@
               %th 本数
               %th 報酬
               %th Assigned?
-              %th Show
+              %th 原稿数
+              %th 詳細
               %th Assign
           %tbody
             -@tasks.each do |task|
@@ -82,6 +83,10 @@
                   %td Assigned
                 -else
                   %td Not Yet
+                -if task.assigned?
+                  %td= task.assigned_task.articles.count
+                - else 
+                  %td 0
                 %td= link_to 'show', editors_tasks_show_path(:id => task.id)
                 %td= link_to 'assign', editors_tasks_assign_path(:id => task.id, :editor_id => current_editor.id), :method => :post
       #tab2_content
@@ -93,7 +98,8 @@
               %th 本数
               %th 報酬
               %th 公開
-              %th Show
+              %th 原稿数
+              %th 詳細
           %tbody
             -@myassigned_tasks.each do |task|
               %tr
@@ -105,6 +111,7 @@
                   %td 公開済
                 - else
                   %td 未公開
+                %td= task.assigned_task.articles.count
                 %td= link_to 'show', editors_tasks_show_path(:id => task.id)
       #tab3_content
         %table.table.table-striped.table-bodered
@@ -114,7 +121,7 @@
               %th Due
               %th 本数
               %th 報酬
-              %th Show
+              %th 詳細
           %tbody
             -@mytasks.each do |task|
               %tr
