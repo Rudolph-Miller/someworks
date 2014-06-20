@@ -1,61 +1,141 @@
 :scss
-  .task-index {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+  .active#tab1 {
+      color: green;
+      opacity: 0.8;
+    }
+  .active#tab2 {
+      color: green;
+      opacity: 0.8;
+    }
+  .active#tab3 {
+      color: green;
+      opacity: 0.8;
+    }
+  .active#tab1_content {
+      display: block;
+      padding: 20px 20px 20px 20px;
+    }
+  .active#tab2_content {
+      display: block;
+      padding: 20px 20px 20px 20px;
+    }
+  .active#tab3_content {
+      display: block;
+      padding: 20px 20px 20px 20px;
+    }
+
+  #tab1_content {
+    display: none;
   }
+  #tab2_content {
+    display: none;
+  }
+  #tab3_content {
+    display: none;
+  }
+  #tab1 {
+    color: green;
+    opacity: 0.5;
+  }
+  #tab2 {
+    color: green;
+    opacity: 0.5;
+  }
+  #tab3 {
+    color: green;
+    opacity: 0.5;
+  }
+  .table {
+    width: 100%;
+  }
+ 
 %div.container.task-index
   %div.row
     %div.col-md-10
       %ul.nav.nav-tabs
-        %li.active= link_to 'tasks', editors_tasks_path
-        %li= link_to 'assigned tasks', editors_assigned_tasks_path
+        %li
+          %a.active#tab1.btn Tasks
+        %li
+          %a#tab2.btn Assigned Tasks
+        %li
+          %a#tab3.btn Created Tasks
       = link_to 'Create Task', editors_tasks_new_path,{:class => "btn btn-default btn-lg"}
-      %div
-        %div.col-md-6
-          %h2 UnassignedTasks 
-          %table
-            %thead
+      #tab1_content.active
+        %table.table.table-striped.table-bodered
+          %thead
+            %tr
+              %th Title
+              %th Due
+              %th 本数
+              %th 報酬
+              %th Assigned?
+              %th Show
+              %th Assign
+          %tbody
+            -@tasks.each do |task|
               %tr
-                %th id
-                %th title
-                %th start
-                %th end
-                %th number
-                %th reward
-                %th published?
-            %tbody
-              -@unasssigned_tasks.each do |task|
-                %tr
-                  %td= task.id
-                  %td= task.title
-                  %td= task.start_date
-                  %td= task.end_date
-                  %td= task.number
-                  %td= task.reward
-                  %td= task.status
-                  %td.btn= link_to 'show', editors_tasks_show_path(:id => task.id)
-                  %td.btn= link_to 'assign', editors_tasks_assign_path(:id => task.id, :editor_id => current_editor.id), :method => :post
-        %div.col-md-6
-          %h2  AssignedTasks
-          %table
-            %thead
+                %td= task.title
+                %td= task.end_date.strftime("%m月%d日 %H:%M")
+                %td= task.number
+                %td= task.reward
+                -if task.assigned?
+                  %td Assigned
+                -else
+                  %td Not Yet
+                %td= link_to 'show', editors_tasks_show_path(:id => task.id)
+                %td= link_to 'assign', editors_tasks_assign_path(:id => task.id, :editor_id => current_editor.id), :method => :post
+      #tab2_content
+        %table.table.table-striped.table-bodered
+          %thead
+            %tr
+              %th Title
+              %th Due
+              %th 本数
+              %th 報酬
+              %th 公開
+              %th Show
+          %tbody
+            -@myassigned_tasks.each do |task|
               %tr
-                %th id
-                %th title
-                %th start
-                %th end
-                %th number
-                %th reward
-                %th published?
-            %tbody
-              -@assigned_tasks.each do |task|
-                %tr
-                  %td= task.id
-                  %td= task.title
-                  %td= task.start_date
-                  %td= task.end_date
-                  %td= task.number
-                  %td= task.reward
-                  %td= task.status
-                  %td.btn= link_to 'show', editors_tasks_show_path(:id => task.id)
-                  %td.btn= link_to 'unassign', editors_tasks_unassign_path(:id => task.id), :method => :post
+                %td= task.title
+                %td= task.end_date.strftime("%m月%d日 %H:%M")
+                %td= task.number
+                %td= task.reward
+                - if task.published?
+                  %td 公開済
+                - else
+                  %td 未公開
+                %td= link_to 'show', editors_tasks_show_path(:id => task.id)
+      #tab3_content
+        %table.table.table-striped.table-bodered
+          %thead
+            %tr
+              %th Title
+              %th Due
+              %th 本数
+              %th 報酬
+              %th Show
+          %tbody
+            -@mytasks.each do |task|
+              %tr
+                %td= task.title
+                %td= task.end_date.strftime("%m月%d日 %H:%M")
+                %td= task.number
+                %td= task.reward
+                %td= link_to 'show', editors_tasks_show_path(:id => task[:id])
+:coffee
+  $("#tab1").click ->
+      $("#tab1_content, #tab2_content, #tab3_content").removeClass("active")
+      $("#tab1, #tab2, #tab3").removeClass("active")
+      $("#tab1_content").addClass("active")
+      $("#tab1").addClass("active")
+    $("#tab2").click ->
+      $("#tab1_content, #tab2_content, #tab3_content").removeClass("active")
+      $("#tab1, #tab2, #tab3").removeClass("active")
+      $("#tab2_content").addClass("active")
+      $("#tab2").addClass("active")
+    $("#tab3").click ->
+      $("#tab1_content, #tab2_content, #tab3_content").removeClass("active")
+      $("#tab1, #tab2, #tab3").removeClass("active")
+      $("#tab3_content").addClass("active")
+      $("#tab3").addClass("active")

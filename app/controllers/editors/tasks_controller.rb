@@ -1,7 +1,6 @@
 class Editors::TasksController < ApplicationController
   def index
-    @assigned_tasks = Task.assigned_all
-    @unasssigned_tasks = Task.unassigned_all
+    @tasks = Task.all
     @mytasks = current_editor.tasks
     @myassigned_tasks = current_editor.assigned_tasks_list
   end
@@ -23,8 +22,7 @@ class Editors::TasksController < ApplicationController
   end
 
   def create 
-    editor=Editor.new
-    if editor.create_task(params)
+    if current_editor.create_task(params)
       redirect_to editors_tasks_path
     else
       redirect_to (:back)

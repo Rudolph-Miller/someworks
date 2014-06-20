@@ -5,6 +5,8 @@ module TaskCreatable
 		@params=params
 		task=Task.new(task_params)
 		task.task_creatable_id = self.id
+    p self.id
+    p self
 		task.task_creatable_type = self.class.to_s
 		task.status = :unpublished
 		task.save
