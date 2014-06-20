@@ -11,6 +11,16 @@
       width: 100%;
     }
     #title {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      font-size: 30px;
+    }
+    #article_title {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      margin-left: 20px;
+      width: 500px;
+      height: 40px;
       font-size: 30px;
     }
   }
@@ -71,13 +81,16 @@
     border-style: none;
     background-color: rgba(10,10,10,0.0); 
     color: #428bca;
-    height: 40px;
-    width: 139px;
+    height: 42px;
+    width: 75px;
   }
 
 .container.edit-article
   .row
     = form_for @article, :url=> writers_articles_create_path do |a|
+      %ul.nav.nav-tabs
+        %li.btn.btn-default#save= a.submit 'create'
+        %li.btn.btn-default.link= link_to 'cancel', writers_articles_path
       .col-md-10
         - if @article.assigned_task_id.present?
           %h2= @article.task_title
@@ -85,7 +98,6 @@
         - else
           = label :article, :title, :id => "title"
           = a.text_field:title, :autofocus => true, :s => '1'
-        %h2 Content
         %ul.nav.nav-tabs
           %li.btn.btn-default.active#tab3{:tupe => "button"} Separate
           %li.btn.btn-default#tab1{:type => "button"} Article
@@ -96,10 +108,7 @@
           %p Result Area
         %input#tokens(style="display:none;" name="tokens")
       .col-md-2
-        %ul.nav.nav-stacked
-          %li.btn.btn-default#save= a.submit 'create'
-          %li.btn.btn-default.link= link_to 'cancel', writers_articles_path
-          %li.uploader
+        .uploader
 
 :coffee
   change_tab = (name) ->

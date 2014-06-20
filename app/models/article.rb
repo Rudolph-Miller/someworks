@@ -8,6 +8,9 @@ class Article < ActiveRecord::Base
   belongs_to :assigned_task
   has_many :pictures
 
+  validates :title, :presence => true
+  validates :content, :presence => true
+
   def assigned_task_info ()
     self.assigned_task.task
   end
