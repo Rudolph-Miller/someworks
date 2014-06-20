@@ -48,12 +48,15 @@
             %a#tab2.btn Articles
       %ul.nav.nav-tabs
         %li= link_to 'back', '/editors/tasks'
-        %li= link_to 'edit', :controller => 'tasks', :action => 'edit', :id => @task[:id]
-        %li= link_to 'delete', editors_tasks_delete_path(:id => @task[:id]), :method => :post
-        -unless @task.assigned?
+        - if @task.task_creatable_type=='editor' && @task.task_creatable_id==current_editor.id
+          %li= link_to 'edit', :controller => 'tasks', :action => 'edit', :id => @task[:id]
+          %li= link_to 'delete', editors_tasks_delete_path(:id => @task[:id]), :method => :post
+        - unless @task.assigned?
           %li= link_to 'assign', editors_tasks_assign_path(:id => @task[:id],:editor_id => current_editor.id), :method => :post
+        - if @task.assigned_task.editor_id == current_editor.id
+          %li= link_to 'unassign', editors_assigned_tasks_unassign_path(:id => @task[:id]), :method => :post
       #tab1_content.active
-        = @task.title
+        %h2= @task.title
         %textarea#task_description(style="display: none;")= @task.description
         #task_description_space
       - unless @articles.empty?
