@@ -1,24 +1,90 @@
+:scss
+  #article_content_space {
+    display: block;
+    border-style: inset;
+    border-width: 1px;
+    overflow: hidden;
+    }
+  #task_description_space {
+    display: block;
+    border-style: inset;
+    border-width: 1px;
+    overflow: hidden;
+    }
+  .active#tab1 {
+      color: green;
+      opacity: 0.8;
+    }
+  .active#tab2 {
+      color: green;
+      opacity: 0.8;
+    }
+  .active#tab1_content {
+      display: block;
+      padding: 20px 20px 20px 20px;
+    }
+  .active#tab2_content {
+      display: block;
+      padding: 20px 20px 20px 20px;
+    }
+
+  #tab1_content {
+    display: none;
+  }
+  #tab2_content {
+    display: none;
+  }
+  #tab1 {
+    color: green;
+    opacity: 0.5;
+  }
+  #tab2 {
+    color: green;
+    opacity: 0.5;
+  }
+  
 %div.container.show-article
   %div.row
     %div.col-md-10
-      -if @article.assigned_task.present?
-        %h2= @article.assigned_task.task.title
-      -else
-        %h2 article
-      %table.table.table-striped.table-bordered
-        %body
-          - @article.attribute_names.each do |key|
-            %tr
-              %td= key
-              %td= @article[key] 
-          %tr
-            %td images
-            - @article.pictures.each do |picture|
-              %td= picture.image_file_name
-    %div.col-md-2
-      %ul.nav.nav-stacks
-        -if @article.assigned_task.present?
-          %li= link_to 'task info', writers_assigned_tasks_show_path(:id => @article.assigned_task_id)
-        %li= link_to 'back', writers_articles_path
-        %li= link_to 'edit', writers_articles_edit_path(:id => @article.id)
-        %li= link_to 'delete', writers_articles_delete_path(:id => @article.id), :method => :post
+      %ul.nav.nav-tabs
+        %a#tab1.btn.active Article
+        - unless @article.assigned_task_id.nil?
+          %a#tab2.btn Task
+      %ul.nav.nav-tabs
+        %li.btn= link_to 'edit', writers_articles_edit_path(:id => @article.id)
+        %li.btn= link_to 'back', writers_articles_path
+        %li.btn= link_to 'delete', writers_articles_delete_path(:id => @article.id), :method => :post
+      #tab1_content.active
+        %h2= @article.title
+        %textarea#article_content(style="display: none;")= @article.content
+        #article_content_space
+      - unless @article.assigned_task_id.nil?
+        #tab2_content
+          %h1= @task.title
+          %label Due
+          = @task.end_date.strftime("%m月%d日 %H:%M")
+          %br
+          %label 報酬
+          = @task.reward
+          %br
+          %label 本数
+          = @task.number
+          %textarea#task_description(style="display: none;")= @task.description
+          #task_description_space
+
+:coffee
+  convert = (id) ->
+    content = $(id).html()
+    $(id).html(marked(content))
+  $("#article_content_space").html(marked($("#article_content").html()))
+  $("#task_description_space").html(marked($("#task_description").html()))
+  $("#tab1").click ->
+    $("#tab1_content").addClass("active")
+    $("#tab1").addClass("active")
+    $("#tab2_content").removeClass("active")
+    $("#tab2").removeClass("active")
+  $("#tab2").click ->
+    $("#tab2_content").addClass("active")
+    $("#tab2").addClass("active")
+    $("#tab1_content").removeClass("active")
+    $("#tab1").removeClass("active")

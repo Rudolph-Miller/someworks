@@ -60,15 +60,14 @@ upload_box = (uuid1, uuid2) ->
 img_box = (uuid1, uuid2) ->
 	"<img id=\"result-#{uuid1}-#{uuid2}\" src=\"#{root}/images/#{uuid1}/#{uuid2}\" style=\"max-height: 200px; height: auto;\"></img>"
 $ ->
-	$(document).ready -> convert()
-	$(".input-area").focus -> convert()
-	$(".input-area").blur -> convert()
-	$(".input-area").keyup -> convert()
-	$(".input-area").keydown -> convert()
-	$(".input-area").change -> convert()
-	$(".input-area").blur -> convert()
-	$(".convert").click -> convert()
-	$("#save").click ->
-		$("#tokens").val(uploaded_tokens)
-	
-
+  if $(".edit-article")[0]
+    $(document).ready -> convert()
+    $(".input-area").focus -> convert()
+    $(".input-area").blur -> convert()
+    $(".input-area").keyup -> convert()
+    $(".input-area").keydown -> convert()
+    $(".input-area").change -> convert()
+    $(".input-area").blur -> convert()
+    $(".convert").click -> convert()
+    $("#save").click ->
+      $("#tokens").val(uploaded_tokens)

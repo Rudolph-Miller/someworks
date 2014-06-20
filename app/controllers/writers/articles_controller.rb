@@ -23,6 +23,9 @@ class Writers::ArticlesController < ApplicationController
 
 	def show
 		@article = Article.where(:id => params[:id]).first
+    unless @article.assigned_task_id.nil?
+      @task = @article.assigned_task_info
+    end
 	end
 
 	def edit

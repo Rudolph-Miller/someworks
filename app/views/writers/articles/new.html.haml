@@ -1,7 +1,8 @@
 :scss
   .edit-article {
     .output-area {
-      border-style: solid;
+      border-style: inset;
+      border-width: 1px;
       height: 60rem;
       overflow: hidden;
     }
@@ -13,7 +14,66 @@
       font-size: 30px;
     }
   }
-
+  .active#tab1 {
+      color: green;
+      opacity: 0.8;
+    }
+  .active#tab2 {
+      color: green;
+      opacity: 0.8;
+    }
+  .active#tab3 {
+      color: green;
+      opacity: 0.8;
+    }
+  .active#tab1_content {
+      display: block;
+      width: 100%;
+      padding: 0;
+      overflow: hidden;
+    }
+  .active#tab2_content {
+      display: block;
+      width: 100%;
+      overflow: hidden;
+    }
+  .separate#tab1_content {
+      display: block;
+      width: 50%;
+      padding: 0;
+      overflow: hidden;
+    }
+  .separate#tab2_content {
+      display: block;
+      width: 50%;
+      padding: 0;
+      overflow: hidden;
+    }
+  #tab1_content {
+    display: none;
+  }
+  #tab2_content {
+    display: none;
+  }
+  #tab1 {
+    color: green;
+    opacity: 0.5;
+  }
+  #tab2 {
+    color: green;
+    opacity: 0.5;
+  }
+  #tab3 {
+    color: green;
+    opacity: 0.5;
+  }
+  input[type="submit"] {
+    border-style: none;
+    background-color: rgba(10,10,10,0.0); 
+    color: #428bca;
+    height: 40px;
+    width: 139px;
+  }
 
 .container.edit-article
   .row
@@ -27,16 +87,35 @@
           = a.text_field:title, :autofocus => true, :s => '1'
         %h2 Content
         %ul.nav.nav-tabs
-          %li.btn.btn-default.btab3{:tupe => "button"} Separate
-          %li.btn.btn-default.btab1{:type => "button"} Article
-          %li.btn.btn-default.btab2{:type => "button"} Preview
-        .col-md-6.tab1
+          %li.btn.btn-default.active#tab3{:tupe => "button"} Separate
+          %li.btn.btn-default#tab1{:type => "button"} Article
+          %li.btn.btn-default#tab2{:type => "button"} Preview
+        .col-md-6#tab1_content.separate
           = a.text_area:content,:autofocus => :true, :cols=>'70', :class=>'input-area'
-        .col-md-6.output-area.tab2
+        .col-md-6.output-area#tab2_content.separate
           %p Result Area
         %input#tokens(style="display:none;" name="tokens")
       .col-md-2
         %ul.nav.nav-stacked
           %li.btn.btn-default#save= a.submit 'create'
-          %li.btn.btn-default= link_to 'cancel', writers_articles_path
+          %li.btn.btn-default.link= link_to 'cancel', writers_articles_path
           %li.uploader
+
+:coffee
+  change_tab = (name) ->
+    $("#tab1_content, #tab2_content").removeClass("active")
+    $("#tab1_content, #tab2_content").removeClass("separate")
+    $("#tab1, #tab2, #tab3").removeClass("active")
+    $(name).addClass("active")
+
+  $ ->
+    $("#tab1").click ->
+      change_tab ("#tab1_content")
+      $("#tab1").addClass("active")
+    $("#tab2").click ->
+      change_tab("#tab2_content")
+      $("#tab2").addClass("active")
+    $("#tab3").click ->
+      $("#tab1, #tab2").removeClass("active")
+      $(this).addClass("active")
+      $("#tab1_content, #tab2_content").addClass("separate")
