@@ -60,7 +60,7 @@ upload_box = (uuid1, uuid2) ->
 img_box = (uuid1, uuid2) ->
 	"<img id=\"result-#{uuid1}-#{uuid2}\" src=\"#{root}/images/#{uuid1}/#{uuid2}\" style=\"max-height: 200px; height: auto;\"></img>"
 $ ->
-  if $(".edit-article")[0]
+  if $(".edit-article")[0] || $(".edit-task")[0]
     $(document).ready -> convert()
     $(".input-area").focus -> convert()
     $(".input-area").blur -> convert()

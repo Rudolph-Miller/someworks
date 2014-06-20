@@ -1,57 +1,55 @@
 :scss
-  .edit-task {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-    #task_title {
-      width: 500px;
-      height: 6rem;
-    }
-    .output-area {
-      border-style: solid;
-      height: 21rem;
-      width: 440px;
-    }
-    .input-area {
-      height: 20rem;
-      width: 440px;
-    }
-    .btns {
-      padding-top: 2rem;
-    }
+  #title {
+    margin-top: 20px;
+    font-size: 25px;
   }
-%div.container
-  %div.row
-    = form_for @task, :url=>{:action => 'create', :controller => 'tasks'}  do |t|
-      %div.col-md-8
-        %table.table
-          %tr
-            %td Title
-            %td= t.text_field:title
-            %br
-          %tr
-            %td Description
-            %td= t.text_area:description, :col=>'20', :rows=>'5'
-            %br
-          %tr
-            %td StartDate
-            %td= t.date_select:start_date
-            %br
-          %tr
-            %td EndDate
-            %td= t.date_select:end_date
-            %br
-          %tr
-            %td Reward
-            %td= t.number_field:reward
-            %br
-          %tr
-            %td Number
-            %td= t.number_field:number
-            %br
-      %div.col-md-2
-        %ul.nav.nav-stacked
-          %li= t.submit 'create'
-          %li= link_to 'cancel', editors_tasks_path
-
-:coffee
-
+  #task_title {
+    margin-top: 20px;
+    width: 500px;
+    height: 40px;
+    font-size: 30px;
+  }
+  .output-area {
+    border-style: solid;
+    height: 400px;
+  }
+  .input-area {
+    height: 400px;
+    width: 100%;
+  }
+  .btns {
+    padding-top: 2rem;
+  }
+  input[type="submit"] {
+    border-style: none;
+    background-color: rgba(10,10,10,0.0); 
+    color: #428bca;
+    height: 42px;
+    width: 75px;
+  }
+.container.edit-task
+  .row
+    .col-md-10
+      = form_for @task, :url => editors_tasks_create_path do |t|
+        %ul.nav.nav-tabs
+          %li.btn.btn-default#save= t.submit 'create'
+          %li.btn.btn-default.link= link_to 'cancel', editors_tasks_path
+        = label :task, :title, :id => "title"
+        = t.text_field:title, :autofocus => true, :s => '1'
+        %br
+        .col-md-12
+          .col-md-6
+            = t.text_area:description, :cols=>'70', :class=>'input-area'
+          .col-md-6.output-area
+            %p Result Area
+        = label :task, :start_date
+        = t.datetime_select:start_date
+        %br
+        = label :task, :end_date
+        = t.datetime_select:end_date
+        %br
+        = label :task, :reward
+        = t.number_field:reward
+        %br
+        = label :task, :number
+        = t.number_field:number
