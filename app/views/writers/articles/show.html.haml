@@ -73,9 +73,6 @@
           #task_description_space
 
 :coffee
-  convert = (id) ->
-    content = $(id).html()
-    $(id).html(marked(content))
   $("#article_content_space").html(marked($("#article_content").html()))
   $("#task_description_space").html(marked($("#task_description").html()))
   $("#tab1").click ->

@@ -1,18 +1,25 @@
+:scss
+  #task_description_space {
+    display: block;
+    border-style: inset;
+    border-width: 1px;
+    overflow: hidden;
+    }
 %div.container
   %div.row
     %div.col-md-10
-      %h1= @task[:title]
-      %table.table.table-striped.table-bordered
-        %body
-          - @task.attribute_names.each do |key|
-            %tr
-              %td= key
-              - if key != "status"
-                %td= @task[key] 
-              - else 
-                %td= @task.status
-    %div.col-md-2
-      %ul.nav.nav-stacks
-        %li= link_to 'create article', writers_articles_new_path(:assigned_task_id => @task.id), :data => {:no_turbolink => 'true'}
-        %li= link_to 'back', writers_articles_path
-
+      %ul.nav.nav-tabs
+        %li.btn= link_to 'back', writers_articles_path
+      %h1= @task.title
+      %label Due
+      = @task.end_date.strftime("%m月%d日 %H:%M")
+      %br
+      %label 報酬
+      = @task.reward
+      %br
+      %label 本数
+      = @task.number
+      %textarea#task_description(style="display: none;")= @task.description
+      #task_description_space
+:coffee
+  $("#task_description_space").html(marked($("#task_description").html()))
