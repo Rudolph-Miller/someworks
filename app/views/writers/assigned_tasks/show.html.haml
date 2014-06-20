@@ -10,6 +10,7 @@
     %div.col-md-10
       %ul.nav.nav-tabs
         %li.btn= link_to 'back', writers_articles_path
+        %li.btn= link_to 'Create Article', writers_articles_new_path(:assigned_task_id => @task.assigned_task.id)
       %h1= @task.title
       %label Due
       = @task.end_date.strftime("%m月%d日 %H:%M")

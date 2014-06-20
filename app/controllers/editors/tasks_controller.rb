@@ -7,6 +7,7 @@ class Editors::TasksController < ApplicationController
 
   def show
     @task = Task.where(:id=>params[:id]).first
+    @articles = @task.assigned_task.articles
   end
 
   def assign
@@ -50,5 +51,12 @@ class Editors::TasksController < ApplicationController
     editor = Editor.new
     editor.delete_task(params)
     redirect_to :controller => 'tasks', :action => 'index'
+  end
+
+  def article
+    @article = Article.where(:id => params[:id]).first
+    unless @article.assigned_task_id.nil?
+      @task = @article.assigned_task_info
+    end
   end
 end

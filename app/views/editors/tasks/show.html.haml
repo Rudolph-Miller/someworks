@@ -1,24 +1,82 @@
+:scss
+  #task_description_space {
+    display: block;
+    border-style: inset;
+    border-width: 1px;
+    overflow: hidden;
+    }
+  .active#tab1 {
+      color: green;
+      opacity: 0.8;
+    }
+  .active#tab2 {
+      color: green;
+      opacity: 0.8;
+    }
+  .active#tab1_content {
+      display: block;
+      padding: 20px 20px 20px 20px;
+    }
+  .active#tab2_content {
+      display: block;
+      padding: 20px 20px 20px 20px;
+    }
+
+  #tab1_content {
+    display: none;
+  }
+  #tab2_content {
+    display: none;
+  }
+  #tab1 {
+    color: green;
+    opacity: 0.5;
+  }
+  #tab2 {
+    color: green;
+    opacity: 0.5;
+  }
+
 %div.container
   %div.row
     %div.col-md-10
-      %table.table.table-striped.table-bordered
-        %body
-          - @task.attribute_names.each do |key|
-            %tr
-              %td= key
-              - if key != "status"
-                %td= @task[key] 
-              - else 
-                %td= @task.status
-          %td Assinged?
-          - if @task.assigned?
-            %td Assigned!
-          - else
-            %td Unassinged!
-    %div.col-md-2
-      %ul.nav.nav-stacked
+      %ul.nav.nav-tabs
+        %li
+          %a.active#tab1.btn Task
+        %li
+          -unless @articles.empty?
+            %a#tab2.btn Articles
+      %ul.nav.nav-tabs
         %li= link_to 'back', '/editors/tasks'
         %li= link_to 'edit', :controller => 'tasks', :action => 'edit', :id => @task[:id]
         %li= link_to 'delete', editors_tasks_delete_path(:id => @task[:id]), :method => :post
         -unless @task.assigned?
           %li= link_to 'assign', editors_tasks_assign_path(:id => @task[:id],:editor_id => current_editor.id), :method => :post
+      #tab1_content.active
+        = @task.title
+        %textarea#task_description(style="display: none;")= @task.description
+        #task_description_space
+      - unless @articles.empty?
+        #tab2_content
+          %table.table.table-striped.table-bordered
+            %thead
+              %th Status
+              %th Update
+              %th Show
+            -@articles.each do |article|
+              %tbody
+                %td= article.status_in_japanese
+                %td= article.updated_at
+                %td= link_to 'show', editors_tasks_article_path(:id => article.id)
+:coffee
+  $("#tab1").click ->
+    $("#tab1_content").addClass("active")
+    $("#tab1").addClass("active")
+    $("#tab2_content").removeClass("active")
+    $("#tab2").removeClass("active")
+  $("#tab2").click ->
+    $("#tab2_content").addClass("active")
+    $("#tab2").addClass("active")
+    $("#tab1_content").removeClass("active")
+    $("#tab1").removeClass("active")
+  $("#task_description_space").html(marked($("#task_description").html()))

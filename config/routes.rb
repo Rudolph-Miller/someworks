@@ -41,6 +41,7 @@ Rails.application.routes.draw do
     post 'tasks/delete', :controller => 'tasks', :action => 'delete'
     get 'tasks/edit', to: 'tasks#edit'
     patch 'tasks/update', to: 'tasks#update'
+    get 'tasks/article', to: 'tasks#article'
 
     get 'assigned_tasks', to: 'assigned_tasks#index'
     post 'assigned_tasks/unassign', :controller => 'assigned_tasks', :action => 'unassign'
