@@ -68,6 +68,7 @@
               %th Due
               %th 本数
               %th 報酬
+              %th 原稿数
               %th 詳細
           %tbody
             -@tasks.each do |task|
@@ -76,6 +77,7 @@
                 %td= task.end_date.strftime("%m月%d日 %H:%M")
                 %td= task.number
                 %td= task.reward
+                %td= task.assigned_task.articles.count
                 %td= link_to 'show', :controller => 'assigned_tasks', :action => 'show', :id => task[:id]
 :coffee
   $("#tab1").click ->

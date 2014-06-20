@@ -1,4 +1,4 @@
-class Editors::TasksController < ApplicationController
+class Editors::TasksController < Editors::ApplicationController
   def index
     @tasks = Task.all
     @mytasks = current_editor.tasks

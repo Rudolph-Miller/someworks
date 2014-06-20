@@ -1,4 +1,4 @@
-class Writers::ArticlesController < ApplicationController
+class Writers::ArticlesController < Writers::ApplicationController
   def index
 		@articles = current_writer.articles
     @tasks = Task.assigned_all

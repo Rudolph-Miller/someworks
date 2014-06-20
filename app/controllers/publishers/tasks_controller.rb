@@ -1,4 +1,4 @@
-class Publishers::TasksController < ApplicationController
+class Publishers::TasksController < Publishers::ApplicationController
 
 	def index
 		@tasks=Task.all

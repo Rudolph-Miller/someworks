@@ -1,4 +1,4 @@
-class Editors::AssignedTasksController < ApplicationController
+class Editors::AssignedTasksController < Editors::ApplicationController
 	def unassign
 		task = Task.where(:id => params[:id]).first
 		task.unassign

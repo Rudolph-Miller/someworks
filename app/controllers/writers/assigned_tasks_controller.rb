@@ -1,4 +1,4 @@
-class Writers::AssignedTasksController < ApplicationController
+class Writers::AssignedTasksController < Writers::ApplicationController
 
   def index
 		@tasks = Task.assigned_all
