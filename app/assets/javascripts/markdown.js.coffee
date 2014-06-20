@@ -46,7 +46,7 @@ change_src = (url, id1, id2) ->
 
 imguploader = (input, result) ->
 	date = new Date()
-	uuid1 = Math.floor(Math.random()*10000000) 
+	uuid1 = Math.floor(Math.random()*10000000)
 	uuid2 = Math.round(date.getTime() / 100000)
 	uuids.push({id1: uuid1, id2: uuid2})
 	uploaded_tokens.push("#{uuid1}:#{uuid2}")
@@ -55,7 +55,7 @@ imguploader = (input, result) ->
 	$(".output-area").html(result)
 
 upload_box = (uuid1, uuid2) ->
-	"<form  id=\"form-#{uuid1}-#{uuid2}\" method=\"POST\" enctype=\"multipart/form-data\" action=\"writers/articles/upload_picture\"><input id=\"image-#{uuid1}-#{uuid2}\" type=\"file\" name=\"image\"></input></form>"
+	"<form  id=\"form-#{uuid1}-#{uuid2}\" method=\"POST\" enctype=\"multipart/form-data\" action=\"writers/articles/upload_picture\"><ul class=\"nav nav-tabs\"> <li class=\"btn btn-default\" class=\"upload_li\"><p style=\"font-size:20px; font-color: aquamarine;\">Drag Image</p><div style=\"border-width:1px; border-style:dotted;\"><input id=\"image-#{uuid1}-#{uuid2}\" style=\"opacity:0; height: 50px;\" type=\"file\" name=\"image\"></input></div></ul></form>"
 
 img_box = (uuid1, uuid2) ->
 	"<img id=\"result-#{uuid1}-#{uuid2}\" src=\"#{root}/images/#{uuid1}/#{uuid2}\" style=\"max-height: 200px; height: auto;\"></img>"
@@ -71,3 +71,5 @@ $ ->
     $(".convert").click -> convert()
     $("#save").click ->
       $("#tokens").val(uploaded_tokens)
+    $(".upload_li").on("dragover", (e)-> e.dataTransfer.dropEffect='copy')
+    $(".upload_li").on("drop", (e)-> e.dataTransfer.files)
